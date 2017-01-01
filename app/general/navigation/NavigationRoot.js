@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Login from '../../login/Login';
-import Main from '../../main/Main';
+import Main from '../../Main';
 
 import {
   BackAndroid,
