@@ -22,28 +22,6 @@ export default class BucketContainer extends Component {
     this.setState({tab});
   }
 
-  renderTabs() {
-    return(
-      <View style={{flex: 2, flexDirection: 'row'}}>
-        <TouchableOpacity style={{flex: 1, alignItems: 'center'}} onPress={()=> this.onTabSelect('home')}>
-          <View>
-            <Text>Home</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={{flex: 1, alignItems: 'center'}} onPress={()=> this.onTabSelect('register')}>
-          <View>
-            <Text>Register</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={{flex: 1, alignItems: 'center'}} onPress={()=> this.onTabSelect('profile')}>
-          <View>
-            <Text>Profile</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-    )
-  }
-
   renderContent() {
     const {tab} = this.state;
     let content;
@@ -66,14 +44,10 @@ export default class BucketContainer extends Component {
 
   render() {
     return(
-      <View style={{flex: 1, backgroundColor: 'white'}}>
-        <View style={{flex: 8}}>
+      <View style={{flex: 1, backgroundColor: 'white', flexDirection: 'column'}}>
+        <View style={{flex: 11}}>
           {this.renderContent()}
         </View>
-        <Tabbar show={true}
-                disable={false}>
-          {this.renderTabs()}
-        </Tabbar>
       </View>
     )
   }

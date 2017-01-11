@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import Login from '../../login/Login';
 import Main from '../../Main';
+import Profile from '../../home/components/Profile';
+import Register from '../../home/components/Register';
+import HomePage from '../../home/components/HomePage';
 
 import {
   BackAndroid,
@@ -36,6 +39,18 @@ export default class NavigationRoot extends Component {
 
     if(route.key === 'main') {
       return <Main/>
+    }
+
+    if(route.key === 'homePage') {
+      return <HomePage/>
+    }
+
+    if(route.key === 'register') {
+      return <Register/>
+    }
+
+    if(route.key === 'profile') {
+      return <Profile/>
     }
   }
 

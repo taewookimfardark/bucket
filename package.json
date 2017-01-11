@@ -13,6 +13,7 @@
     "react-dom": "^15.4.1",
     "react-modal": "^1.6.3",
     "react-native": "0.39.2",
+    "react-native-router-flux": "^3.37.0",
     "react-native-tabbar": "^1.0.0",
     "react-native-viewpager": "^0.2.13",
     "react-redux": "^4.4.6",
