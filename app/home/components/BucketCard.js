@@ -3,13 +3,17 @@ import {
   View,
   Text,
   Image,
-  TouchableOpacity
+  TouchableOpacity  
 } from 'react-native'
+import {connect} from 'react-redux';
 
-export default class BucketCard extends Component {
+import * as modalActionCreators from '../../general/modal/modalActionCreators';
+
+
+class BucketCard extends Component {
   render(){
     return(
-      <TouchableOpacity style={{height: 300, flex: 1}} onPress={()=> this.props.openModal()}>
+      <TouchableOpacity style={{height: 300, flex: 1}} onPress={()=> this.props.openModal({})}>
         <View style={{flex: 1, flexDirection: 'column'}}>
           <View style={{flex: 0.05}}></View>
           <View style={{flex: 0.9, flexDirection: 'row'}}>
@@ -31,3 +35,12 @@ export default class BucketCard extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return{
+    openModal: (option) => dispatch(modalActionCreators.openModal(option))
+  }
+};
+
+export default connect(undefined, mapDispatchToProps)(BucketCard)
+

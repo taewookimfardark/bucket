@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Login from '../../login/Login';
 import Main from '../../Main';
 import Profile from '../../home/components/Profile';
 import Register from '../../home/components/Register';
@@ -32,10 +31,6 @@ export default class NavigationRoot extends Component {
   _renderScene (props) {
     const {route} = props.scene;
     console.log("scene", props.secne);
-
-    if(route.key === 'login') {
-      return <Login/>
-    }
 
     if(route.key === 'main') {
       return <Main/>

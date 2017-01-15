@@ -7,11 +7,9 @@ import {
 } from 'react-native';
 
 import {connect} from 'react-redux';
+import {Actions} from 'react-native-router-flux';
 
-import * as NavigationActionCreators from '../general/navigation/NavigationActionCreators';
-
-
-class Login extends Component {
+export default class Auth extends Component {
   render() {
     return(
       <View
@@ -30,22 +28,22 @@ class Login extends Component {
           width: 100
           }}/>
         <Button title="login" onPress={e => {
-          this.props.login();
+          Actions.tabbar();
         }}/>
       </View>
     )
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    login: () => {
-      dispatch(NavigationActionCreators.push({key: 'main', title: 'Main'}));
-    }
-  }
-};
-
-export default connect(undefined, mapDispatchToProps)(Login)
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     // login: () => {
+//     //   dispatch(NavigationActionCreators.push({key: 'main', title: 'Main'}));
+//     // }
+//   }
+// };
+//
+// export default connect(undefined, mapDispatchToProps)(Auth)
 
 
 

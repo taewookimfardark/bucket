@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
-import NavigationRootContainer from './general/navigation/NavigationRootContainer'
+import App from './App';
 import {
   AppRegistry,
   StyleSheet,
@@ -17,7 +17,7 @@ export default class BucketApp extends Component {
   render(){
     return(
       <Provider store={store}>
-        <NavigationRootContainer/>
+        <App/>
       </Provider>
     )
   }
