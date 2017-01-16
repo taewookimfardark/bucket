@@ -8,7 +8,7 @@ import {
 import {Router, Scene} from 'react-native-router-flux';
 
 import Auth from './auth/Auth';
-import HomeContainer from './home/HomeContainer';
+import MainContainer from './home/MainContainer';
 import Register from './home/components/Register';
 import Profile from './home/components/Profile';
 import CompleteBucket from './home/components/CompleteBucktet';
@@ -41,12 +41,12 @@ export default class App extends Component {
           <Scene
             key="tabbar"
             tabs={true}
-            tabBarStyle={{ backgroundColor: '#FFFFFF' }}
+            tabBarStyle={{ backgroundColor: '#FFFFFF', position: 'relative'}}
           >
             <Scene key="home" title="Home" icon={TabIcon}>
               <Scene
                 key="a"
-                component={HomeContainer}
+                component={MainContainer}
                 hideNavBar={true}
               />
             </Scene>

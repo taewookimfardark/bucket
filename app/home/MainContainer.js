@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import ViewPager from 'react-native-viewpager';
-import Home from './Home';
+import Main from './Main';
 
 const mapStateToProps = (state, ownProps) => {
   var rawDataSource = [
@@ -28,4 +28,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(Main)
