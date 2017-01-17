@@ -12,6 +12,7 @@ import MainContainer from './home/MainContainer';
 import Register from './home/components/Register';
 import Profile from './home/components/Profile';
 import CompleteBucket from './home/components/CompleteBucktet';
+import EditPassword from './home/components/EditPassword';
 
 const TabIcon = ({ selected, title }) => {
   return (
@@ -38,6 +39,11 @@ export default class App extends Component {
             hideNavBar={true}
             title="Complete Bucket"
           />
+          <Scene
+            key="editPassword"
+            component={EditPassword}
+            hideNavBar={true}
+            title="Edit Password"/>
           <Scene
             key="tabbar"
             tabs={true}
