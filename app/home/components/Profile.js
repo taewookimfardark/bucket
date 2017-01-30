@@ -54,40 +54,55 @@ export default class Profile extends Component {
             </View>
           </View>
         </Modal>
-        <NavigationBar backButton={()=>Actions.home()} completeButton={()=>Actions.home()}/>
-        <View style={{flex: 1, margin: 15, backgroundColor: 'grey', opacity: 0.6, flexDirection: 'column'}}>
-          <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Image style={{borderRadius: 50, width: 90, height: 90}} source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}></Image>
-          </View>
-          <View style={{flex: 1, flexDirection: 'column'}}>
-            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-              <TextInput style={{width: 300}} placeholder="Nickname"/>
+        <NavigationBar title="myProfile" backButton={()=>Actions.home()} completeButton={()=>Actions.home()}/>
+        <View style={{flex: 1, padding: 15, flexDirection: 'column'}}>
+          <View style={{flex: 4, alignItems: 'center'}}>
+            <View style={{flex: 3, alignItems: 'center', padding: 30}}>
+              <Image style={{width: 100, height: 100, borderRadius: 50}}
+                     source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}>
+              </Image>
             </View>
-            <View style={{flex: 3, margin: 10, backgroundColor: 'white', borderRadius: 10, flexDirection: 'column'}}>
-              <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                <Text style={{flex: 2, textAlign: 'center'}}>Name</Text><TextInput style={{flex: 8, textAlignVertical: 'bottom'}} placeholder="Name"/>
-              </View>
-              <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                <Text style={{flex: 2, textAlign: 'center'}}>Gender</Text><TextInput style={{flex: 8, textAlignVertical: 'bottom'}} placeholder="Gender"/>
-              </View>
-              <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                <Text style={{flex: 2, textAlign: 'center'}}>E-mail</Text><TextInput style={{flex: 8, textAlignVertical: 'bottom'}} placeholder="E-mail"/>
+            <View style={{flex: 1, alignItems: 'center'}}>
+              <View style={{width: 100, height: 25, borderBottomWidth: 1, borderBottomColor: 'black'}}>
+                <TextInput style={{flex: 1, fontSize: 10, textAlign: 'center', textAlignVertical: 'bottom'}} placeholder="Nickname"/>
               </View>
             </View>
           </View>
-          <View style={{flex: 1, flexDirection: 'column'}}>
+          <View style={{flex: 3, flexDirection: 'column', padding: 20}}>
+              <View style={{flex: 1.5}}></View>
+              <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                <Text style={{flex: 2, fontSize: 10, textAlign: 'center'}}>Name</Text>
+                <View style={{flex: 8, borderBottomWidth: 1, borderBottomColor: 'black'}}>
+                  <TextInput style={{flex: 1, fontSize: 10, textAlignVertical: 'bottom'}} placeholder="Name"/>
+                </View>
+              </View>
+              <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                <Text style={{flex: 2, fontSize: 10, textAlign: 'center'}}>Gender</Text>
+                <View style={{flex: 8, borderBottomWidth: 1, borderBottomColor: 'black'}}>
+                  <TextInput style={{flex: 1, fontSize: 10, textAlignVertical: 'bottom'}} placeholder="Gender"/>
+                </View>
+              </View>
+              <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                <Text style={{flex: 2, fontSize: 10, textAlign: 'center'}}>Email</Text>
+                <View style={{flex: 8, borderBottomWidth: 1, borderBottomColor: 'black'}}>
+                  <TextInput style={{flex: 1, fontSize: 10, textAlignVertical: 'bottom'}} placeholder="Email"/>
+                </View>
+              </View>
+              <View style={{flex: 1.5}}></View>
+          </View>
+          <View style={{flex: 3, flexDirection: 'column'}}>
             <TouchableOpacity
-              style={{flex: 1, margin: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white'}}
+              style={{flex: 1, margin: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderRadius: 20}}
               onPress={()=>Actions.editPassword()}>
               <Text>Password</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{flex: 1, margin: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white'}}
+              style={{flex: 1, margin: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderRadius: 20}}
               onPress={()=>this.setState({confirmVisible: true, confirmText: 'Really Log out?'})}>
               <Text>Log out</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={{flex: 1, margin: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white'}}
+              style={{flex: 1, margin: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderRadius: 20}}
               onPress={()=>this.setState({confirmVisible: true, confirmText: 'Really Destroy?'})}>
               <Text>Destroy</Text>
             </TouchableOpacity>

@@ -61,6 +61,7 @@ export default class App extends Component {
                 key="b"
                 component={Register}
                 hideNavBar={true}
+                hideTabBar={true}
               />
             </Scene>
             <Scene key="profile" title="Profile" icon={TabIcon}>

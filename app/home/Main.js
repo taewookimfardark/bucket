@@ -74,14 +74,15 @@ class Main extends Component {
         </Modal>
         <View style={{
           height: 60,
-          backgroundColor: 'purple',
           flexDirection: 'row',
           alignItems: 'center',
-          justifyContent: 'space-between'
+          justifyContent: 'space-between',
+          borderBottomWidth: 0.5,
+          borderBottomColor: 'rgba(128, 128, 128, 0.7)'
         }}>
           {this.props.rawDataSource.map((data, index) => (
             <TouchableOpacity key={index} onPress={()=> pager && pager.goToPage(index)} style={{}}>
-              <Text>{data.title}</Text>
+              <Text style={{textAlignVertical: 'center', textAlign: 'center'}}>{data.title}</Text>
             </TouchableOpacity>
           ))}
         </View>

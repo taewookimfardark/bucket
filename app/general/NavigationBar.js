@@ -8,7 +8,8 @@ import {
 export default class NavigationBar extends Component {
   render() {
     return(
-      <View style={{height: 64, alignItems: 'center', flexDirection: 'row', justifyContent:'space-between', backgroundColor: 'red'}}>
+      <View style={{height: 64, alignItems: 'center', flexDirection: 'row', justifyContent:'space-between',
+                    borderBottomWidth: 0.5, borderBottomColor: 'rgba(128, 128, 128, 0.7)'}}>
         <TouchableOpacity onPress={()=> this.props.backButton()}><Text>Back</Text></TouchableOpacity>
         <Text>{this.props.title}</Text>
         <TouchableOpacity onPress={()=> this.props.completeButton()}><Text>Complete</Text></TouchableOpacity>
