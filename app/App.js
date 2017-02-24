@@ -2,21 +2,41 @@ import React, {Component} from 'react';
 import {
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
 
 import {Router, Scene} from 'react-native-router-flux';
 
 import Auth from './auth/Auth';
+import Group from './group/Group';
 import MainContainer from './home/MainContainer';
 import Register from './home/components/Register';
 import Profile from './home/components/Profile';
 import CompleteBucket from './home/components/CompleteBucktet';
 import EditPassword from './home/components/EditPassword';
 
-const TabIcon = ({ selected, title }) => {
+const HomeIcon = ({ selected, title }) => {
   return (
-    <Text style={{color: selected ? 'red' :'black'}}>{title}</Text>
+    <Image
+      style={{height: 30, width: 30}}
+      source={require('./image/home_icon.png')}/>
+  );
+};
+
+const AddIcon = ({ selected, title }) => {
+  return (
+    <Image
+      style={{height: 30, width: 30}}
+      source={require('./image/suggest_icon.png')}/>
+  );
+};
+
+const ProfileIcon = ({ selected, title }) => {
+  return (
+    <Image
+      style={{height: 30, width: 30}}
+      source={require('./image/suggest_icon.png')}/>
   );
 };
 
@@ -34,6 +54,12 @@ export default class App extends Component {
             initial
           />
           <Scene
+            key="group"
+            component={Group}
+            title="Auth"
+            hideNavBar={true}
+          />
+          <Scene
             key="completeBucket"
             component={CompleteBucket}
             hideNavBar={true}
@@ -49,14 +75,14 @@ export default class App extends Component {
             tabs={true}
             tabBarStyle={{ backgroundColor: '#FFFFFF', position: 'relative'}}
           >
-            <Scene key="home" title="Home" icon={TabIcon}>
+            <Scene key="home" title="Home" icon={HomeIcon}>
               <Scene
                 key="a"
                 component={MainContainer}
                 hideNavBar={true}
               />
             </Scene>
-            <Scene key="register" title="Register" icon={TabIcon}>
+            <Scene key="register" title="Register" icon={AddIcon}>
               <Scene
                 key="b"
                 component={Register}
@@ -64,7 +90,7 @@ export default class App extends Component {
                 hideTabBar={true}
               />
             </Scene>
-            <Scene key="profile" title="Profile" icon={TabIcon}>
+            <Scene key="profile" title="Profile" icon={ProfileIcon}>
               <Scene
                 key="c"
                 component={Profile}

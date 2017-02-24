@@ -8,17 +8,22 @@ import {
   Tabbar,
   Modal,
   Image,
-  Button
+  Button,
+  TextInput
 } from 'react-native';
 
 import {connect} from 'react-redux';
 import {Actions} from 'react-native-router-flux';
 
+import colors from '../general/colors';
+
+import TabBar from './TabBar';
 import Album from './components/Album';
 import HomePage from './components/HomePage';
 import Inbox from './components/Inbox';
 
 import ViewPager from 'react-native-viewpager';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 import * as modalActionCreators from '../general/modal/modalActionCreators';
 
@@ -43,68 +48,45 @@ class Main extends Component {
           visible={this.props.modalOption.visible}
           onRequestClose = {()=> this.props.closeModal({})}>
           <View style={{flex: 1, backgroundColor: 'rgba(10,10,10, 0.7)'}}>
-            <View style={{flex:1, margin: 30, backgroundColor: 'white', opacity: 1, borderRadius: 10, flexDirection: 'column'}}>
-              <View style={{flex: .8, flexDirection: 'column'}}>
-                <TouchableOpacity title="X"
-                        onPress={()=> this.props.closeModal({})}
-                        style={{position: 'absolute', backgroundColor: 'lime', top: 10, right:10}}
-                        />
+            <View style={{flex:1, marginTop: 120, marginBottom: 120, backgroundColor: 'white', opacity: 1, borderRadius: 10, flexDirection: 'column'}}>
+              <View style={{flex: .9, flexDirection: 'column'}}>
                 <Image style={{flex: 6, borderRadius: 10, marginBottom: 10}} source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}></Image>
-                <View style={{flex: 2, flexDirection: 'row', backgroundColor: 'red'}}>
-                  <View style={{flex: 9, flexDirection: 'column', backgroundColor: 'green'}}>
-                    <Text>Subject</Text>
-                    <Text>Date</Text>
+                <View style={{flex: 1, flexDirection: 'row', padding: 5}}>
+                  <View style={{flex: 9, flexDirection: 'column', borderBottomWidth: 1, borderBottomColor: 'grey'}}>
+                    <Text>Title</Text>
                   </View>
-                  <View style={{flex: 1, backgroundColor: 'blue'}}>
-                    <Text>button</Text>
+                  <View style={{flex: 1, borderBottomWidth: 1, borderBottomColor: 'grey'}}>
+                    <Text>but</Text>
                   </View>
                 </View>
-                <Text style={{flex: 4, backgroundColor: 'pink'}}>message</Text>
+                <View style={{flex: 3, flexDirection: 'row', padding: 10}}>
+                  <View style={{flex: 1.5, alignItems: 'center'}}>
+                    <Image style={{width: 20, height: 20, borderRadius: 10}} source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}></Image>
+                  </View>
+                  <View style={{flex: 10}}>
+                    <Text>dfdfdfdfdfdfdf
+                    dfdfdsdfsdfsdfshdfksjdhfkasjfhksajfhaskfjhaskfjhsakfjhsadkfjhsakfjhaskfdjhaskjfdhsakjdfhaskjdhfkasjhk
+                    </Text>
+                  </View>
+                </View>
               </View>
-              <View style={{flex: .1, flexDirection: 'row'}}>
-                <TouchableHighlight onPress={() => {this.props.closeModal({})}} style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                  <Text>Fail</Text>
-                </TouchableHighlight>
-                <TouchableHighlight onPress={() => {this.props.closeModal({}); Actions.completeBucket();}} style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                  <Text>Complete</Text>
+              <View style={{flex: .05, flexDirection: 'row', padding: 10}}>
+                <TouchableHighlight onPress={() => {this.props.closeModal({}); Actions.completeBucket();}}
+                                    style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.colorBucket, borderRadius: 5}}>
+                  <Text style={{color: 'white'}}>Complete</Text>
                 </TouchableHighlight>
               </View>
             </View>
           </View>
         </Modal>
-        <View style={{
-          height: 60,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          borderBottomWidth: 0.5,
-          borderBottomColor: 'rgba(128, 128, 128, 0.7)'
-        }}>
-          {this.props.rawDataSource.map((data, index) => (
-            <TouchableOpacity key={index} onPress={()=> pager && pager.goToPage(index)} style={{}}>
-              <Text style={{textAlignVertical: 'center', textAlign: 'center'}}>{data.title}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-        <ViewPager
-          renderPageIndicator={false}
-          ref={p => {pager = p}}
-          dataSource={this.props.dataSource}
-          renderPage = {data => {
-            switch(data.type) {
-              case 'homePage':
-                return (<HomePage/>);
-              case 'album':
-                return (<Album/>);
-              case 'inbox':
-                return (<Inbox/>);
-              default:
-                return (<HomePage/>);
-            }}
-          }
-          onChangePage={pageIndex => this.setState({currentPageIndex: pageIndex})}
-          initialPage={1}>
-        </ViewPager>
+        <ScrollableTabView
+          initialPage={1}
+          style={{marginTop: 20}}
+          renderTabBar={() => <TabBar/>}>
+          <Album/>
+          <HomePage/>
+          <Inbox/>
+        </ScrollableTabView>
       </View>
     )
   }

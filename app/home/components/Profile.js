@@ -8,10 +8,14 @@ import {
   Modal
 } from 'react-native';
 
+import {connect} from 'react-redux';
+
 import {Actions} from 'react-native-router-flux';
 import NavigationBar from '../../general/NavigationBar';
 
-export default class Profile extends Component {
+import {authActionCreators} from '../../auth/authReducer';
+
+class Profile extends Component {
 
   constructor(props) {
     super(props);
@@ -44,9 +48,9 @@ export default class Profile extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}
-                  onPress={()=>{
+                  onPress={() => {
                     this.setState({confirmVisible: false, confirmText: ''});
-                    Actions.auth();
+                    this.props.logout();
                   }}>
                   <Text>Yes</Text>
                 </TouchableOpacity>
@@ -59,12 +63,12 @@ export default class Profile extends Component {
           <View style={{flex: 4, alignItems: 'center'}}>
             <View style={{flex: 3, alignItems: 'center', padding: 30}}>
               <Image style={{width: 100, height: 100, borderRadius: 50}}
-                     source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}>
+                     source={{uri: this.props.myData.profileImage}}>
               </Image>
             </View>
             <View style={{flex: 1, alignItems: 'center'}}>
               <View style={{width: 100, height: 25, borderBottomWidth: 1, borderBottomColor: 'black'}}>
-                <TextInput style={{flex: 1, fontSize: 10, textAlign: 'center', textAlignVertical: 'bottom'}} placeholder="Nickname"/>
+                <TextInput style={{flex: 1, fontSize: 10, textAlign: 'center', textAlignVertical: 'bottom'}} value={this.props.myData.nickName}/>
               </View>
             </View>
           </View>
@@ -73,7 +77,7 @@ export default class Profile extends Component {
               <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
                 <Text style={{flex: 2, fontSize: 10, textAlign: 'center'}}>Name</Text>
                 <View style={{flex: 8, borderBottomWidth: 1, borderBottomColor: 'black'}}>
-                  <TextInput style={{flex: 1, fontSize: 10, textAlignVertical: 'bottom'}} placeholder="Name"/>
+                  <TextInput style={{flex: 1, fontSize: 10, textAlignVertical: 'bottom'}} placeholder="Name" value={this.props.myData.name}/>
                 </View>
               </View>
               <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
@@ -85,7 +89,7 @@ export default class Profile extends Component {
               <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
                 <Text style={{flex: 2, fontSize: 10, textAlign: 'center'}}>Email</Text>
                 <View style={{flex: 8, borderBottomWidth: 1, borderBottomColor: 'black'}}>
-                  <TextInput style={{flex: 1, fontSize: 10, textAlignVertical: 'bottom'}} placeholder="Email"/>
+                  <TextInput style={{flex: 1, fontSize: 10, textAlignVertical: 'bottom'}} placeholder="Email" value={this.props.myData.email}/>
                 </View>
               </View>
               <View style={{flex: 1.5}}></View>
@@ -112,3 +116,20 @@ export default class Profile extends Component {
     )
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    myData: state.auth.myData
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => {
+      dispatch(authActionCreators.deleteAuthToken());
+      Actions.auth();
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

@@ -6,6 +6,8 @@ import {
   TextInput
 } from 'react-native';
 
+import colors from '../../general/colors';
+
 import DatePicker from 'react-native-datepicker';
 import NavigationBar from '../../general/NavigationBar';
 
