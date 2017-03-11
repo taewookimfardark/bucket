@@ -13,7 +13,6 @@ export const groupActionCreators = {
 export const groupReducer = (state={}, action) => {
   switch(action.type) {
     case groupActions.SET_GROUP:
-      console.log('action groups', action.groups);
       let groupObj = {};
       for(let group of action.groups) {
         groupObj[group.id] = group;

@@ -7,9 +7,8 @@ export function openModal(option) {
   }
 }
 
-export function closeModal(option) {
+export function closeModal() {
   return {
-    type: modalActions.CLOSE_MODAL,
-    option
+    type: modalActions.CLOSE_MODAL
   }
 }

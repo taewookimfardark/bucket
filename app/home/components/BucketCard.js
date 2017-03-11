@@ -13,7 +13,7 @@ import * as modalActionCreators from '../../general/modal/modalActionCreators';
 class BucketCard extends Component {
   render(){
     return(
-      <TouchableOpacity style={{height: 200, flex: 1, padding: 10}} onPress={()=> this.props.openModal({})}>
+      <TouchableOpacity style={{height: 200, flex: 1, padding: 10}} onPress={()=> this.props.openModal(this.props.bucket)}>
         <View style={{flex: 1, borderRadius: 10}}>
           <Image source={{uri: this.props.bucket.profileImage}} style={{flex: 1, borderRadius: 10}}/>
           <View style={{flex: 1, height: 30, position: 'absolute', borderBottomLeftRadius: 10, borderBottomRightRadius: 10, bottom: 0, right: 0, left: 0, backgroundColor: 'black', opacity: 0.7, justifyContent: 'center'}}>

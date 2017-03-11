@@ -50,14 +50,14 @@ class Main extends Component {
           animationType={"slide"}
           transparent={true}
           visible={this.props.modalOption.visible}
-          onRequestClose = {()=> this.props.closeModal({})}>
+          onRequestClose = {()=> this.props.closeModal()}>
           <View style={{flex: 1, backgroundColor: 'rgba(10,10,10, 0.7)'}}>
             <View style={{flex:1, marginTop: 120, marginBottom: 120, backgroundColor: 'white', opacity: 1, borderRadius: 10, flexDirection: 'column'}}>
               <View style={{flex: .9, flexDirection: 'column'}}>
-                <Image style={{flex: 6, borderRadius: 10, marginBottom: 10}} source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}></Image>
+                <Image style={{flex: 6, borderRadius: 10, marginBottom: 10}} source={{uri: this.props.modalOption.params.profileImage +'=s300'}}></Image>
                 <View style={{flex: 1, flexDirection: 'row', padding: 5}}>
                   <View style={{flex: 9, flexDirection: 'column', borderBottomWidth: 1, borderBottomColor: 'grey'}}>
-                    <Text>Title</Text>
+                    <Text>{this.props.modalOption.params.title}</Text>
                   </View>
                   <View style={{flex: 1, borderBottomWidth: 1, borderBottomColor: 'grey'}}>
                     <Text>but</Text>
@@ -65,12 +65,10 @@ class Main extends Component {
                 </View>
                 <View style={{flex: 3, flexDirection: 'row', padding: 10}}>
                   <View style={{flex: 1.5, alignItems: 'center'}}>
-                    <Image style={{width: 20, height: 20, borderRadius: 10}} source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}></Image>
+                    <Image style={{width: 20, height: 20, borderRadius: 10}} source={{uri: this.props.myData.profileImage}}></Image>
                   </View>
                   <View style={{flex: 10}}>
-                    <Text>dfdfdfdfdfdfdf
-                    dfdfdsdfsdfsdfshdfksjdhfkasjfhksajfhaskfjhaskfjhsakfjhsadkfjhsakfjhaskfdjhaskjfdhsakjdfhaskjdhfkasjhk
-                    </Text>
+                    <Text>{this.props.modalOption.params.description}</Text>
                   </View>
                 </View>
               </View>
@@ -111,7 +109,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    closeModal: (option) => dispatch(modalActionCreators.closeModal(option)),
+    closeModal: () => dispatch(modalActionCreators.closeModal()),
     getBucket: (groupId) => dispatch(bucketActionCreators.getBucket(groupId))
   }
 };

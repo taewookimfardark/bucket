@@ -14,6 +14,8 @@ import {Actions} from 'react-native-router-flux';
 import NavigationBar from '../../general/NavigationBar';
 
 import {authActionCreators} from '../../auth/authReducer';
+import {bucketActionCreators} from '../../bucket/bucketReducer';
+import {groupActionCreators} from '../../group/groupReducer';
 
 class Profile extends Component {
 

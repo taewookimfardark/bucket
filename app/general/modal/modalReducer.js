@@ -18,7 +18,7 @@ const modalReducer = (state = initialState, action) => {
       return {
         ...state,
         visible: false,
-        params: action.option
+        params: null
       };
     default:
       return state;

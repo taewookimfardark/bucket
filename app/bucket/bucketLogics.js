@@ -24,10 +24,17 @@ const postBucketLogic = createLogic({
   latest: true,
   process: async({getState, action, http, fetch}, dispatch, done) => {
     try{
-      console.log(action);
       let res = await fetch.send('/buckets', 'post', action.bucket);
 
-      dispatch(bucketActionCreators.setBucket([res.data]));
+      const state = getState();
+
+      let createdBucket = res.data;
+      createdBucket.user = {
+        profileImage: state.auth.myData.profileImage,
+        profileImageId: state.auth.myData.profileImageId
+      };
+
+      dispatch(bucketActionCreators.setBucket([createdBucket]));
       dispatch(imageActionCreators.setImage(null));
 
       Actions.home();
