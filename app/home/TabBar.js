@@ -47,7 +47,7 @@ const TabBar = React.createClass({
       <TouchableOpacity onPress={()=> this.props.goToPage(0)} style={{borderBottomWidth: 1, borderBottomColor: this.props.activeTab === 0 ? colors.colorBucket : 'transparent'}}>
         <Image
           style={{width: 40, height: 40}}
-          source={require('../image/album_icon.png')}
+          source={require('../general/image/album_icon.png')}
         />
       </TouchableOpacity>
       <TouchableOpacity onPress={()=> this.props.goToPage(1)} style={{borderBottomWidth: 1, borderBottomColor: this.props.activeTab === 1 ? colors.colorBucket : 'transparent', justifyContent: 'center', alignItems: 'center'}}>
@@ -56,7 +56,7 @@ const TabBar = React.createClass({
       <TouchableOpacity onPress={()=> this.props.goToPage(2)} style={{borderBottomWidth: 1, borderBottomColor: this.props.activeTab === 2 ? colors.colorBucket : 'transparent'}}>
         <Image
           style={{width: 40, height: 40, paddingBottom: 10}}
-          source={require('../image/inbox_icon.png')}
+          source={require('../general/image/inbox_icon.png')}
         />
       </TouchableOpacity>
     </View>;

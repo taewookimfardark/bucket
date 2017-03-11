@@ -6,19 +6,21 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
-  Modal
+  Modal,
+  ListView
 } from 'react-native';
 import BucketCard from './BucketCard';
-import Auth from '../../auth/Auth';
 
-import {Actions, Router, Scene} from 'react-native-router-flux';
+import {bucketActionCreators} from '../../bucket/bucketReducer';
 
-class HomePage extends Component {
+export default class HomePage extends Component {
 
   constructor(props) {
     super(props);
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      modalVisible : false
+      modalVisible : false,
+      ds: ds
     }
   }
 
@@ -27,29 +29,14 @@ class HomePage extends Component {
   }
 
   render() {
+    console.log('homepage', this.props.buckets);
     return(
       <View style={{flex: 1, flexDirection: 'column'}}>
-        <ScrollView style={{flex: .95, flexDirection: 'column'}}>
-          <BucketCard/>
-          <BucketCard/>
-          <BucketCard/>
-          <BucketCard/>
-          <BucketCard/>
-          <BucketCard/>
-          <BucketCard/>
-          <BucketCard/>
-        </ScrollView>
+        <ListView
+          dataSource={this.state.ds.cloneWithRows(this.props.buckets)}
+          renderRow={(rowData) => <BucketCard key={rowData.id} bucket={rowData}/>}/>
       </View>
     )
   }
 }
-
-const mapDispatchToProps = dispatch => {
-  return {
-    pageToRegister: () => dispatch(NavigationActionCreators.push({key: 'register', title: 'Register'})),
-    pageToProfile: () => dispatch(NavigationActionCreators.push({key: 'profile', title: 'Profile'}))
-  }
-};
-
-export default connect(undefined, mapDispatchToProps)(HomePage)
 

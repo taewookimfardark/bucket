@@ -27,7 +27,7 @@ export const authReducer = (state = {}, action) => {
     case authActions.SET_MY_DATA:
       return {
         ...state,
-        myData: action.myData
+        myData: {...state.myData, ...action.myData}
       };
     default:
       return state;

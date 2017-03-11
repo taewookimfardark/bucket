@@ -26,6 +26,7 @@ import ViewPager from 'react-native-viewpager';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 import * as modalActionCreators from '../general/modal/modalActionCreators';
+import {bucketActionCreators} from '../bucket/bucketReducer';
 
 
 class Main extends Component {
@@ -33,8 +34,11 @@ class Main extends Component {
   constructor(props) {
     super(props);
 
+    this.props.getBucket(this.props.groupId);
+
     this.state = {
-      currentPageIndex: 1
+      currentPageIndex: 1,
+      currentGroup: this.props.groups[this.props.groupId]
     }
   };
 
@@ -83,8 +87,8 @@ class Main extends Component {
           initialPage={1}
           style={{marginTop: 20}}
           renderTabBar={() => <TabBar/>}>
-          <Album/>
-          <HomePage/>
+          <album/>
+          <HomePage buckets={this.props.buckets}/>
           <Inbox/>
         </ScrollableTabView>
       </View>
@@ -93,15 +97,22 @@ class Main extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  let bucketList = Object.keys(state.bucket).map((key) => state.bucket[key]);
+  bucketList = bucketList.filter((bucket) => bucket.groupId === ownProps.groupId);
+  console.log('new bucket list');
   return {
     ...ownProps,
-    modalOption: state.modal
+    modalOption: state.modal,
+    groups: state.group,
+    buckets: bucketList,
+    myData: state.auth.myData
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    closeModal: (option) => dispatch(modalActionCreators.closeModal(option))
+    closeModal: (option) => dispatch(modalActionCreators.closeModal(option)),
+    getBucket: (groupId) => dispatch(bucketActionCreators.getBucket(groupId))
   }
 };
 

@@ -35,7 +35,7 @@ class Auth extends Component {
           <View style={{flex: 2, flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
             <Image
               style={{width: 140, height: 120, marginVertical: 15}}
-              source={require('../image/inbox_icon.png')}/>
+              source={require('../general/image/inbox_icon.png')}/>
             <Text style={{fontSize: 18}}>Would.U</Text>
           </View>
           <View style={{flex: 2, justifyContent: 'center', paddingVertical: 20}}>
@@ -49,7 +49,7 @@ class Auth extends Component {
               <TextInput
                 placeholder={' password'}
                 style={{flex: 1}}
-                onChangeText={(text) => this.setState({password: text})}/>
+                onChangeText={(text) => this.setState({password: text})}></TextInput>
             </View>
             <TouchableOpacity style={{height: 25, backgroundColor: colors.colorBucket, borderRadius: 8, justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 10}} onPress={e => {this.props.login(this.state.email, this.state.password)}}>
               <Text style={{color: 'white'}}>Sign In</Text>

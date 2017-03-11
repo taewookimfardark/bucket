@@ -10,6 +10,7 @@ import {Router, Scene} from 'react-native-router-flux';
 
 import Auth from './auth/Auth';
 import Group from './group/Group';
+import AddGroup from './group/AddGroup';
 import MainContainer from './home/MainContainer';
 import Register from './home/components/Register';
 import Profile from './home/components/Profile';
@@ -20,7 +21,7 @@ const HomeIcon = ({ selected, title }) => {
   return (
     <Image
       style={{height: 30, width: 30}}
-      source={require('./image/home_icon.png')}/>
+      source={require('./general/image/home_icon.png')}/>
   );
 };
 
@@ -28,7 +29,7 @@ const AddIcon = ({ selected, title }) => {
   return (
     <Image
       style={{height: 30, width: 30}}
-      source={require('./image/suggest_icon.png')}/>
+      source={require('./general/image/suggest_icon.png')}/>
   );
 };
 
@@ -36,7 +37,7 @@ const ProfileIcon = ({ selected, title }) => {
   return (
     <Image
       style={{height: 30, width: 30}}
-      source={require('./image/suggest_icon.png')}/>
+      source={require('./general/image/suggest_icon.png')}/>
   );
 };
 
@@ -50,13 +51,19 @@ export default class App extends Component {
             key="auth"
             component={Auth}
             title="Auth"
-            hideNavBar={true}
             initial
+            hideNavBar={true}
           />
           <Scene
             key="group"
             component={Group}
-            title="Auth"
+            title="group"
+            hideNavBar={true}
+          />
+          <Scene
+            key="addGroup"
+            component={AddGroup}
+            title="addGroup"
             hideNavBar={true}
           />
           <Scene

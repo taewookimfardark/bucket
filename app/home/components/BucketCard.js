@@ -5,31 +5,21 @@ import {
   Image,
   TouchableOpacity  
 } from 'react-native'
-import {connect} from 'react-redux';
 
+import {connect} from 'react-redux';
 import * as modalActionCreators from '../../general/modal/modalActionCreators';
 
 
 class BucketCard extends Component {
   render(){
     return(
-      <TouchableOpacity style={{height: 200, flex: 1}} onPress={()=> this.props.openModal({})}>
-        <View style={{flex: 1, flexDirection: 'column'}}>
-          <View style={{flex: 0.05}}></View>
-          <View style={{flex: 0.9, flexDirection: 'row'}}>
-            <View style={{flex: 0.05}}></View>
-            <View style={{flex: 0.9, flexDirection: 'column', backgroundColor: 'grey', borderRadius: 10}}>
-              <View style={{height: 60, position: 'absolute', bottom: 0, left: 0, right: 0, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-                <View style={{flexDirection: 'column', left: 10}}>
-                  <Text style={{flex: 1}}>Bucket title</Text>
-                  <Text style={{flex: 1}}>content</Text>
-                </View>
-                <Image style={{width: 30, height: 30, right: 10, borderRadius: 50}} source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}/>
-              </View>
-            </View>
-            <View style={{flex: 0.05}}></View>
+      <TouchableOpacity style={{height: 200, flex: 1, padding: 10}} onPress={()=> this.props.openModal({})}>
+        <View style={{flex: 1, borderRadius: 10}}>
+          <Image source={{uri: this.props.bucket.profileImage}} style={{flex: 1, borderRadius: 10}}/>
+          <View style={{flex: 1, height: 30, position: 'absolute', borderBottomLeftRadius: 10, borderBottomRightRadius: 10, bottom: 0, right: 0, left: 0, backgroundColor: 'black', opacity: 0.7, justifyContent: 'center'}}>
+            <Text style={{paddingLeft: 10, fontSize: 10, color: 'white', zIndex: 1}}>{this.props.bucket.title}</Text>
           </View>
-          <View style={{flex: 0.05}}></View>
+          <Image style={{position: 'absolute', right: 15, bottom: 15, height: 30, width: 30, borderRadius: 15}} source={{uri: this.props.bucket.user.profileImage}}/>
         </View>
       </TouchableOpacity>
     )
