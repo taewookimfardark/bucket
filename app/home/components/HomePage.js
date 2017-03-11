@@ -29,11 +29,11 @@ export default class HomePage extends Component {
   }
 
   render() {
-    console.log('homepage', this.props.buckets);
     return(
       <View style={{flex: 1, flexDirection: 'column'}}>
         <ListView
           dataSource={this.state.ds.cloneWithRows(this.props.buckets)}
+          enableEmptySections={true}
           renderRow={(rowData) => <BucketCard key={rowData.id} bucket={rowData}/>}/>
       </View>
     )

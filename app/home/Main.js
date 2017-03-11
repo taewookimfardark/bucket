@@ -97,9 +97,9 @@ class Main extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let bucketList = Object.keys(state.bucket).map((key) => state.bucket[key]);
+  let bucketList = Object.keys({...state.bucket}).map((key) => state.bucket[key]);
   bucketList = bucketList.filter((bucket) => bucket.groupId === ownProps.groupId);
-  console.log('new bucket list');
+  console.log('new bucket list', bucketList);
   return {
     ...ownProps,
     modalOption: state.modal,

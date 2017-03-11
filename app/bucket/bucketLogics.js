@@ -1,5 +1,6 @@
 import {createLogic} from 'redux-logic';
 import {bucketActions, bucketActionCreators} from './bucketReducer';
+import {imageActionCreators} from '../image/imageReducer';
 
 import {Actions} from 'react-native-router-flux';
 
@@ -27,6 +28,8 @@ const postBucketLogic = createLogic({
       let res = await fetch.send('/buckets', 'post', action.bucket);
 
       dispatch(bucketActionCreators.setBucket([res.data]));
+      dispatch(imageActionCreators.setImage(null));
+
       Actions.home();
 
     } catch(err) {

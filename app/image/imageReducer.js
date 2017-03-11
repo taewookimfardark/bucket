@@ -12,7 +12,6 @@ export const imageActionCreators = {
 export const imageReducer = (state={}, action) => {
   switch(action.type) {
     case imageActions.SET_IMAGE:
-      console.log(state);
       return {
         ...state,
         uploadedImage: action.image

@@ -41,6 +41,7 @@ class Group extends Component {
         <ListView
           contentContainerStyle={styles.list}
           dataSource={this.state.ds.cloneWithRows(Object.keys(this.props.groups).map((id) => this.props.groups[id]))}
+          enableEmptySections={true}
           renderRow={(rowData) =>
                       <TouchableOpacity style={styles.item} onPress={(e) => Actions.tabbar({groupId: rowData.id})}>
                         <Image style={{flex: 1, borderRadius: 10}} source={rowData.profileImage ? {uri: rowData.profileImage} : null}/>

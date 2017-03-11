@@ -33,8 +33,12 @@ class Register extends Component {
     }
   }
 
-  componentWillReceiveProps(props) {
-    console.log(props);
+  componentWillMount() {
+    console.log('component will mount');
+  }
+
+  componentDidMount() {
+    console.log('component will mount');
   }
 
   selectPhotoTapped() {
@@ -90,7 +94,16 @@ class Register extends Component {
   render() {
     return(
       <View style={{flex: 1, flexDirection: 'column'}}>
-        <NavigationBar title='New Bucket' backButton={()=> Actions.home()} completeButton={this.createBucket.bind(this)}/>
+        <NavigationBar title='New Bucket'
+                       backButton={()=>{
+                         this.props.setImage(null);
+                         this.setState({
+                           bucketTitle: '',
+                           bucketDescription: ''
+                         });
+                         Actions.home();
+                       }}
+                       completeButton={this.createBucket.bind(this)}/>
         <View style={{flex: 1, flexDirection: 'column', padding: 10}}>
           <View style={{flex: 3, height: 200, borderRadius: 10, position: 'relative', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
             <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)} style={{flex: 1, borderRadius: 10}}>
@@ -106,7 +119,8 @@ class Register extends Component {
                 onBlur={()=>this.setState({titleInputFocus: false})}
                 underlineColorAndroid='transparent'
                 placeholder="New Bucket Title.."
-                onChangeText={(text) => this.setState({bucketTitle: text})}/>
+                onChangeText={(text) => this.setState({bucketTitle: text})}
+                value={this.state.bucketTitle}/>
             </View>
           </View>
           <View style={{flex: 3, flexDirection: 'row', padding: 10}}>
@@ -122,6 +136,7 @@ class Register extends Component {
                 onFocus={()=>this.setState({contentInputFocus: true})}
                 onBlur={()=>this.setState({contentInputFocus: false})}
                 onChangeText={(text) => this.setState({bucketDescription: text})}
+                value={this.state.bucketDescription}
                 style={{textAlignVertical: 'top', flex: 14, fontSize: 10}}/>
             </View>
           </View>
@@ -134,7 +149,7 @@ class Register extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
+  console.log('register', state);
   return {
     ...ownProps,
     uploadedImage: state.image.uploadedImage,
@@ -145,7 +160,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     postImage : (body) => {dispatch(imageActionCreators.postImage(body))},
-    postBucket : (bucketObj) => {dispatch(bucketActionCreators.postBucket(bucketObj))}
+    postBucket : (bucketObj) => {dispatch(bucketActionCreators.postBucket(bucketObj))},
+    setImage : (image) => {dispatch(imageActionCreators.setImage(image))}
   }
 };
 

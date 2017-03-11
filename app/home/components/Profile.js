@@ -18,6 +18,7 @@ import {authActionCreators} from '../../auth/authReducer';
 class Profile extends Component {
 
   constructor(props) {
+    console.log('open profile');
     super(props);
     this.state = {
       confirmText: '',
@@ -127,6 +128,7 @@ const mapDispatchToProps = dispatch => {
   return {
     logout: () => {
       dispatch(authActionCreators.deleteAuthToken());
+      dispatch(authActionCreators.setMyData(null));
       Actions.auth();
     }
   }
