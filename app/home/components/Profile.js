@@ -131,6 +131,8 @@ const mapDispatchToProps = dispatch => {
     logout: () => {
       dispatch(authActionCreators.deleteAuthToken());
       dispatch(authActionCreators.setMyData(null));
+      dispatch(bucketActionCreators.resetBucket());
+      dispatch(groupActionCreators.resetGroup());
       Actions.auth();
     }
   }

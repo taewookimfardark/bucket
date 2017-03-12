@@ -116,32 +116,6 @@ class AddGroup extends Component {
               </View>
             )
           })}
-
-          {this.state.searchMode ?
-            <View>
-              <View style={styles.memberItem}>
-                <TextInput style={styles.memberTextInput}></TextInput>
-              </View>
-              {this.props.users && Object.keys(this.props.users).map(id => {
-                return (
-                  <TouchableOpacity key={id}
-                                    onPress={(e) => {
-
-                                      this.setState({members: [...this.state.members, this.props.users[id]], searchMode: false});
-                                    }}
-                                    style={{borderWidth: 1, borderRadius: 10, borderColor: 'grey', padding: 10}}>
-                    <Text>{this.props.users[id].email}</Text>
-                  </TouchableOpacity>
-                )
-              })}
-            </View>
-            :
-            <TouchableOpacity style={styles.memberItem} onPress={()=>{
-              this.setState({searchMode: true});
-              this.props.searchUsers();
-            }}>
-              <Text>+ Add Member</Text>
-            </TouchableOpacity>}
         </View>
 
       </View>

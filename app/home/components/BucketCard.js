@@ -8,6 +8,7 @@ import {
 
 import {connect} from 'react-redux';
 import * as modalActionCreators from '../../general/modal/modalActionCreators';
+import {Actions} from 'react-native-router-flux';
 
 
 class BucketCard extends Component {

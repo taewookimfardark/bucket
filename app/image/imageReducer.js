@@ -1,7 +1,7 @@
 export const imageActions = {
   POST_IMAGE: 'POST_IMAGE',
   GET_IMAGE: 'GET_IMAGE',
-  SET_IMAGE: 'SET_IMAGE'
+  SET_IMAGE: 'SET_IMAGE',
 };
 
 export const imageActionCreators = {
@@ -19,4 +19,4 @@ export const imageReducer = (state={}, action) => {
     default:
       return state;
   }
-}
+};

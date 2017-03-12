@@ -1,13 +1,15 @@
 export const bucketActions = {
   GET_BUCKET: 'GET_BUCKET',
   SET_BUCKET: 'SET_BUCKET',
-  POST_BUCKET: 'POST_BUCKET'
+  POST_BUCKET: 'POST_BUCKET',
+  RESET_BUCKET: 'RESET_BUCKET'
 };
 
 export const bucketActionCreators = {
   getBucket: (groupId) => ({type: bucketActions.GET_BUCKET, groupId}),
   setBucket: (bucketList) => ({type: bucketActions.SET_BUCKET, bucketList}),
-  postBucket: (bucket) => ({type: bucketActions.POST_BUCKET, bucket})
+  postBucket: (bucket) => ({type: bucketActions.POST_BUCKET, bucket}),
+  resetBucket: ()=> ({type: bucketActions.RESET_BUCKET})
 };
 
 export const bucketReducer = (state={}, action) => {
@@ -26,6 +28,8 @@ export const bucketReducer = (state={}, action) => {
         ...state,
         ...bucketObj
       };
+    case bucketActions.RESET_BUCKET:
+      return {};
     default:
       return state;
   }

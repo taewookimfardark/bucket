@@ -6,7 +6,7 @@ import {
   Image
 } from 'react-native';
 
-import {Router, Scene} from 'react-native-router-flux';
+import {Router, Scene, Modal} from 'react-native-router-flux';
 
 import Auth from './auth/Auth';
 import Group from './group/Group';
@@ -51,7 +51,7 @@ export default class App extends Component {
             key="auth"
             component={Auth}
             title="Auth"
-            initial
+            initial={true}
             hideNavBar={true}
           />
           <Scene

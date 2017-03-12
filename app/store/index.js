@@ -9,6 +9,7 @@ import {userReducer} from '../user/userReducer';
 import {imageReducer} from '../image/imageReducer';
 import {groupReducer} from '../group/groupReducer';
 import {bucketReducer} from '../bucket/bucketReducer';
+import {bucketImageReducer} from '../bucket-image/bucketImageReducer';
 
 import http from '../services/http';
 import fetch from '../services/fetch';
@@ -40,6 +41,7 @@ const store = createStore(
     image: imageReducer,
     group: groupReducer,
     bucket: bucketReducer,
+    bucketImage: bucketImageReducer,
     navigation: NavigationReducers.navigationState,
     modal: modalReducer
   }), enhancer
