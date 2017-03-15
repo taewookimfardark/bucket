@@ -24,6 +24,7 @@ import TabBar from './TabBar';
 import Album from './components/Album';
 import HomePage from './components/HomePage';
 import Inbox from './components/Inbox';
+import BucketModal from '../general/modal/components/bucketModal';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
@@ -56,50 +57,15 @@ class Main extends Component {
           transparent={true}
           visible={this.props.modalOption.visible}
           onRequestClose = {()=> this.props.closeModal()}>
-          <TouchableOpacity
-            style={{flex: 1, backgroundColor: colors.colorBackgroundOpacity, justifyContent: 'center', alignItems: 'center'}}
-            onPress={()=> this.props.closeModal()}>
-            <TouchableOpacity
-              activeOpacity={1}
-              style={{width: fullWidth * constants.modalWidthRatio, height: fullHeight * constants.modalHeightRatio, backgroundColor: 'white', opacity: 1, borderRadius: 10, flexDirection: 'column', zIndex: 1}}>
-              <View style={{flex: .92, flexDirection: 'column', borderTopLeftRadius: 10, borderTopRightRadius: 10}}>
-                <Image style={{flex: 6, borderRadius: 10, borderBottomLeftRadius: 10, borderBottomRightRadius: 10, marginBottom: 10}}
-                       source={{uri: this.props.modalOption.params && this.props.modalOption.params.profileImage ? this.props.modalOption.params.profileImage +'=s300' : ''}}></Image>
-                <View style={{flex: 1, paddingHorizontal: 10}}>
-                  <View style={{flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: 'grey'}}>
-                    <View style={{flex: 9, flexDirection: 'column', justifyContent: 'center'}}>
-                      <Text>{this.props.modalOption.params && this.props.modalOption.params.title || '-'}</Text>
-                    </View>
-                    <TouchableOpacity style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                      <Icon name="md-create" size={24}/>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-                <View style={{flex: 3, flexDirection: 'row', padding: 10}}>
-                  <View style={{flex: 1.5, alignItems: 'center'}}>
-                    <Image style={{width: 30, height: 30, borderRadius: 15}} source={{uri: this.props.myData.profileImage}}></Image>
-                  </View>
-                  <View style={{flex: 10}}>
-                    <Text>{this.props.modalOption.params && this.props.modalOption.params.description || '-'}</Text>
-                  </View>
-                </View>
-              </View>
-              <View style={{flex: .08, flexDirection: 'row', padding: 10}}>
-                <TouchableHighlight onPress={() => {this.props.closeModal({}); Actions.completeBucket();}}
-                                    style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.colorBucket, borderRadius: 10}}>
-                  <Text style={{color: 'white'}}>Complete</Text>
-                </TouchableHighlight>
-              </View>
-            </TouchableOpacity>
-          </TouchableOpacity>
+          <BucketModal closeModal={this.props.closeModal} bucket={this.props.modalOption.params} myData={this.props.myData}/>
         </Modal>
         <ScrollableTabView
           initialPage={1}
           style={{marginTop: 20}}
           renderTabBar={() => <TabBar/>}>
-          <album/>
-          <HomePage buckets={this.props.buckets}/>
-          <Inbox/>
+          <Album completedBuckets={this.props.buckets.filter((b) => b.status === 'REQUESTED')}/>
+          <HomePage acceptedBuckets={this.props.buckets.filter((b) => b.status === 'ACCEPTED')}/>
+          <Inbox requestedBuckets={this.props.buckets.filter((b) => (b.status === 'REQUESTED'))}/>
         </ScrollableTabView>
       </View>
     )

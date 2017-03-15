@@ -88,6 +88,7 @@ class Register extends Component {
       groupId: this.props.groupId,
       userId: this.props.myData.id
     };
+    console.log('post bucket');
     this.props.postBucket(bucketObj);
   }
 

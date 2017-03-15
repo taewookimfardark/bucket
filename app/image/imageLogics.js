@@ -14,19 +14,6 @@ const imageLogic = createLogic({
   }
 });
 
-const bucketImageLogic = createLogic({
-  type: imageActions.POST_BUCKET_IMAGE,
-  latest: true,
-  process: async({getState, action, http, fetch}, dispatch, done) => {
-    try {
-      let res = await fetch.send('/bucket_images', 'post', action.body, null, {'Content-Type': 'multipart/form-data'});
-      dispatch(imageActionCreators.setImage(res.data));
-    } catch(err) {
-      console.log('error', err);
-    }
-  }
-});
-
 export default [
-  imageLogic, bucketImageLogic
+  imageLogic
 ]

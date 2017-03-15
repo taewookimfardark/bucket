@@ -1,47 +1,44 @@
 import React, {Component} from 'react';
 import {
   View,
-  Text
+  Text,
+  ListView,
+  Image,
+  StyleSheet,
+  Modal
 } from 'react-native';
 
-import DatePicker from 'react-native-datepicker';
+import colors from '../../general/colors';
+
+import BucketInbox from './BucketInbox';
+
+const styles = StyleSheet.create({
+  separator: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#8E8E8E',
+  }
+});
 
 export default class Inbox extends Component {
 
   constructor(props){
     super(props);
-    this.state = {date:"2016-05-15"}
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      ds: ds
+    };
   }
 
 
   render() {
     return(
       <View style={{flex: 1}}>
-        <Text>Inbox</Text>
-        <DatePicker
-          style={{width: 200}}
-          date={this.state.date}
-          mode="date"
-          placeholder="select date"
-          format="YYYY-MM-DD"
-          minDate="2016-05-01"
-          maxDate="2016-06-01"
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          customStyles={{
-          dateIcon: {
-            position: 'absolute',
-            left: 0,
-            top: 4,
-            marginLeft: 0
-          },
-          dateInput: {
-            marginLeft: 36
-          }
-          // ... You can check the source to find the other keys.
-        }}
-          onDateChange={(date) => {this.setState({date: date})}}
-        />
+        <ListView
+          dataSource={this.state.ds.cloneWithRows(this.props.requestedBuckets)}
+          enableEmptySections={true}
+          renderRow={(rowData) => <BucketInbox bucket={rowData}/>}
+          renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}/>
       </View>
     )
   }

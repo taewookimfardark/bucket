@@ -10,7 +10,6 @@ const getBucketLogic = createLogic({
   process: async({getState, action, http, fetch}, dispatch, done) => {
     try{
       let res = await fetch.send('/buckets', 'get', null, {groupId: action.groupId});
-      console.log('get bucket', res);
       let groupList = res.data;
       dispatch(bucketActionCreators.setBucket(groupList));
     } catch(err) {
@@ -45,7 +44,26 @@ const postBucketLogic = createLogic({
   }
 });
 
+const updateBucketLogic = createLogic({
+  type: bucketActions.UPDATE_BUCKET,
+  latest: true,
+  process: async({getState, action, http, fetch}, dispatch, done) => {
+    try{
+      let res = await fetch.send(`/buckets/${action.bucketId}`, 'put', action.params);
+      let bucket = res.data;
+      let params = {};
+      for(let param in action.params) {
+        params[param] = bucket[param];
+      }
+      dispatch(bucketActionCreators.upsertBucket(bucket.id, params));
+    } catch(err){
+      console.log(err);
+    }
+  }
+});
+
 export default [
   getBucketLogic,
-  postBucketLogic
+  postBucketLogic,
+  updateBucketLogic
 ]

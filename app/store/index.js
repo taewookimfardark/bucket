@@ -19,13 +19,14 @@ import authLogics from '../auth/authLogics';
 import imageLogics from '../image/imageLogics';
 import groupLogics from '../group/groupLogics';
 import bucketLogics from '../bucket/bucketLogics';
+import bucketImageLogics from '../bucket-image/bucketImageLogics';
 
 const deps = {
   http, fetch
 };
 
 const logicMiddleware = createLogicMiddleware([
-  ...authLogics, ...userLogics, ...imageLogics, ...groupLogics, ...bucketLogics
+  ...authLogics, ...userLogics, ...imageLogics, ...groupLogics, ...bucketLogics, ...bucketImageLogics
 ], deps);
 
 const middleware = applyMiddleware(

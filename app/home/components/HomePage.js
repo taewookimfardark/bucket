@@ -32,7 +32,7 @@ export default class HomePage extends Component {
     return(
       <View style={{flex: 1, flexDirection: 'column'}}>
         <ListView
-          dataSource={this.state.ds.cloneWithRows(this.props.buckets)}
+          dataSource={this.state.ds.cloneWithRows(this.props.acceptedBuckets)}
           enableEmptySections={true}
           renderRow={(rowData) => <BucketCard key={rowData.id} bucket={rowData}/>}/>
       </View>
