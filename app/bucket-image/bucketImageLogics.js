@@ -6,7 +6,9 @@ const bucketImageLogic = createLogic({
   latest: true,
   process: async({getState, action, http, fetch}, dispatch, done) => {
     try{
-      let res = await fetch.send('/bucket_images', 'post', action.body, null, {'Content-Type': 'multipart/form-data'});
+      console.log('gogo');
+      let res = await fetch.send('/bucket_images', 'post', action.body, {bucketId: action.bucketId}, {'Content-Type': 'multipart/form-data'});
+      console.log('bucket image res', res);
       dispatch(bucketImageActionCreators.setBucketImage(res.data));
     } catch(err) {
       console.log('error', err);

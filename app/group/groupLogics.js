@@ -26,7 +26,7 @@ const getGroupLogic = createLogic({
   latest: true,
   process: async({getState, action, http, fetch}, dispatch, done) => {
     console.log('call');
-    let res = await fetch.send('/relation_user_groups', 'get');
+    let res = await fetch.send('/relation-user-groups', 'get');
     console.log('hoho', res);
     if(!res.data) done();
     let groups = [];
