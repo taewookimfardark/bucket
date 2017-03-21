@@ -20,69 +20,91 @@ import colors from '../../general/colors';
 import {Actions} from 'react-native-router-flux';
 
 import {bucketImageActionCreators} from '../../bucket-image/bucketImageReducer';
+import {bucketActionCreators} from '../../bucket/bucketReducer';
 
 const ImagePicker = NativeModules.ImageCropPicker;
-
-const fullWidth = Dimensions.get('window').width;
 
 class CompleteBucket extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      data: new Date(),
+      completeDate: new Date(),
       completeMessage: '',
       image: null,
       images: null
     };
   }
 
+  componentWillMount() {
+    this.props.getBucketImage(this.props.bucket.id);
+  }
+
   pickMultiple() {
     ImagePicker.openPicker({
       multiple: true,
       waitAnimationEnd: false
-    }).then(images => {
+    }).then( (images) => {
+          let bodyList = [];
           for(let i of images) {
             let body = new FormData();
-            body.append('file', {uri: i.path, type: i.mime});
-            this.props.postBucketImage(this.props.bucket.id, body);
+            let fileName = i.path.split('/')[i.path.split('/').length-1].split('.')[0];
+            body.append('file', {uri: `file://${i.path}`, type: 'multipart/form-data', name: fileName});
+            bodyList.push(body);
           }
+      this.props.postBucketImage(this.props.bucket.id, bodyList);
     }).catch(e => alert(e));
+  }
+
+  bucketImages() {
+    let basicImg = (
+      <TouchableOpacity style={{flex: 1}} onPress={this.pickMultiple.bind(this)} key={-1}>
+        { !this.props.currentBucketImages ?
+          (<View style={{right: 0, left: 0, top: 0, bottom: 0, margin: 10, borderRadius: 10, position: 'absolute', backgroundColor: colors.colorBlackBackgroundOpacity, zIndex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Text style={{color: 'white'}}>+ Add Photo</Text>
+          </View>) :
+          null
+        }
+        <Image style={{flex: 1, borderRadius: 10, margin: 10}} source={{uri: this.props.bucket.profileImage}}/>
+      </TouchableOpacity>
+    );
+    if(!this.props.currentBucketImages) return basicImg;
+    let imageList = this.props.currentBucketImages.map((image) => {
+      return (
+        <TouchableOpacity style={{flex: 1}} onPress={this.pickMultiple.bind(this)} key={image.id}>
+          <Image style={{flex: 1, borderRadius: 10, margin: 10}} source={{uri: image.servingUrl}}/>
+        </TouchableOpacity>
+      )
+    });
+    return [basicImg, ...imageList];
+  }
+
+  completeBucket() {
+    const completeBucketObj = {
+      completeDate: this.state.completeDate.getTime() / 1000,
+      status: 'COMPLETED',
+      completeMessage: this.state.completeMessage,
+      completeMessageUserId: this.props.myData.id
+    };
+    this.props.completeBucket(this.props.bucket.id, completeBucketObj);
   }
 
   render() {
     return (
       <View style={{flex: 1, flexDirection: 'column'}}>
-        <NavigationBar title="Complete Bucket" backButton={()=>Actions.pop()} completeButton={()=>Actions.pop()}/>
+        <NavigationBar title="Complete Bucket" backButton={()=>Actions.pop()} completeButton={this.completeBucket.bind(this)}/>
         <View style={{flex: 1}}>
           <Swiper height={200} activeDotColor={colors.colorBackgroundOpacity}>
-            <TouchableOpacity style={{flex: 1}} onPress={this.pickMultiple.bind(this)}>
-              { !this.props.currentBucketImages ?
-                (<View style={{right: 0, left: 0, top: 0, bottom: 0, margin: 10, borderRadius: 10, position: 'absolute', backgroundColor: colors.colorBlackBackgroundOpacity, zIndex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                <Text style={{color: 'white'}}>+ Add Photo</Text>
-                </View>) :
-                null
-              }
-              <Image style={{flex: 1, borderRadius: 10, margin: 10}} source={{uri: this.props.bucket.profileImage}}/>
-            </TouchableOpacity>
-            {
-              this.props.currentBucketImages ?
-              this.props.currentBucketImages.map((image) => (
-                <TouchableOpacity style={{flex: 1}}>
-                  <Image style={{flex: 2, borderRadius: 10, margin: 10}} source={{uri: image}}/>
-                </TouchableOpacity>
-              )): null
-            }
+            {this.bucketImages()}
           </Swiper>
           <View style={{flex: 1, paddingHorizontal: 10}}>
             <View style={{height: 50, flexDirection: 'column', borderBottomWidth: 1, borderBottomColor: 'black'}}>
               <Text style={{fontSize: 16}}>{this.props.bucket.title}</Text>
               <DatePicker
                 style={{height: 20, width: 80}}
-                date={this.state.date}
+                date={this.state.completeDate}
                 showIcon={false}
                 mode="date"
-                placeholder = {this.state.date}
                 format="YYYY-MM-DD"
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
@@ -95,8 +117,7 @@ class CompleteBucket extends Component {
                   }
                 }
                 onDateChange={(date)=> {
-                  this.setState({date: date});
-                  console.log(this.state);
+                  this.setState({completeDate: date});
                 }}/>
             </View>
             <View style={{height: 300, padding: 5}}>
@@ -139,7 +160,6 @@ const mapStateToProps = (state, ownProps) => {
   let bucketImages = state.bucketImage;
   let currentBucketImages = Object.keys(bucketImages).map((id) => bucketImages[id]).filter((image) => image.bucketId === ownProps.bucket.id);
   if(currentBucketImages.length === 0) currentBucketImages = null;
-  console.log('current bucket images', currentBucketImages);
   return {
     myData: state.auth.myData,
     currentBucketImages: currentBucketImages
@@ -148,7 +168,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postBucketImage: (bucketId, body) => dispatch(bucketImageActionCreators.postBucketImage(bucketId, body))
+    postBucketImage: (bucketId, imageArr) => dispatch(bucketImageActionCreators.postBucketImage(bucketId, imageArr)),
+    getBucketImage: (bucketId) => dispatch(bucketImageActionCreators.getBucketImage(bucketId)),
+    completeBucket: (bucketId, params) => dispatch(bucketActionCreators.updateBucket(bucketId, params))
   }
 };
 

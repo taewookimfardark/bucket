@@ -8,7 +8,10 @@ import {
   StyleSheet
 } from 'react-native';
 
-export default class Album extends Component {
+import {connect} from 'react-redux';
+import * as modalActionCreators from '../../general/modal/modalActionCreators';
+
+class Album extends Component {
 
   constructor(props){
     super(props);
@@ -27,10 +30,10 @@ export default class Album extends Component {
           enableEmptySections={true}
           renderRow={(rowData) =>
 
-                      <TouchableOpacity style={styles.item} onPress={(e) => {}}>
+                      <TouchableOpacity style={styles.item} onPress={() => this.props.openModal('showBucket', rowData)}>
                         <Image style={{flex: 1, borderRadius: 10}} source={rowData.profileImage ? {uri: rowData.profileImage} : null}/>
                         <View style={{height: 25, position: 'absolute', borderBottomLeftRadius: 10, borderBottomRightRadius: 10, left: 0, right: 0, bottom: 0, backgroundColor: 'black', opacity: 0.7, justifyContent: 'center', alignItems: 'center'}}>
-                          <Text style={{fontSize: 10, color: 'white', zIndex: 1}}>{rowData.name}</Text>
+                          <Text style={{fontSize: 10, color: 'white', zIndex: 1}}>{rowData.title}</Text>
                         </View>
                       </TouchableOpacity>}/>
       </View>
@@ -50,3 +53,11 @@ const styles = StyleSheet.create({
     borderRadius: 10
   }
 });
+
+const mapDispatchToProps = dispatch => {
+  return {
+    openModal: (name, option) => dispatch(modalActionCreators.openModal(name, option))
+  }
+};
+
+export default connect(undefined, mapDispatchToProps)(Album)

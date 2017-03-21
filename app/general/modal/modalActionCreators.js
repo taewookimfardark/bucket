@@ -1,8 +1,9 @@
 import * as modalActions from './modalActions';
 
-export function openModal(option) {
+export function openModal(name, option) {
   return {
     type: modalActions.OPEN_MODAL,
+    name,
     option
   }
 }

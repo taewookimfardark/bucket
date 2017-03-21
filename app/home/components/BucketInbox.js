@@ -14,7 +14,7 @@ class BucketInbox extends Component {
   render() {
     return (
       <TouchableOpacity
-        onPress={()=> this.props.openModal(this.props.bucket)}
+        onPress={()=> this.props.openModal('acceptBucket', this.props.bucket)}
         style={{flex: 1, height: 120, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center'}}>
         <Image style={{width: 100, height: 100, borderRadius: 10}} source={{uri: this.props.bucket.profileImage}}/>
         <View style={{marginLeft: 10}}>
@@ -27,7 +27,7 @@ class BucketInbox extends Component {
 
 const mapDispatchToProps = dispatch => {
   return{
-    openModal: (option) => dispatch(modalActionCreators.openModal(option))
+    openModal: (name, option) => dispatch(modalActionCreators.openModal(name, option))
   }
 };
 

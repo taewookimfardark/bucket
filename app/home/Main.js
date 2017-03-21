@@ -57,13 +57,13 @@ class Main extends Component {
           transparent={true}
           visible={this.props.modalOption.visible}
           onRequestClose = {()=> this.props.closeModal()}>
-          <BucketModal closeModal={this.props.closeModal} bucket={this.props.modalOption.params} myData={this.props.myData}/>
+          <BucketModal modalName={this.props.modalOption.name} closeModal={this.props.closeModal} bucket={this.props.modalOption.params} myData={this.props.myData}/>
         </Modal>
         <ScrollableTabView
           initialPage={1}
           style={{marginTop: 20}}
           renderTabBar={() => <TabBar/>}>
-          <Album completedBuckets={this.props.buckets.filter((b) => b.status === 'REQUESTED')}/>
+          <Album completedBuckets={this.props.buckets.filter((b) => b.status === 'COMPLETED')}/>
           <HomePage acceptedBuckets={this.props.buckets.filter((b) => b.status === 'ACCEPTED')}/>
           <Inbox requestedBuckets={this.props.buckets.filter((b) => (b.status === 'REQUESTED'))}/>
         </ScrollableTabView>
@@ -73,7 +73,14 @@ class Main extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let bucketList = Object.keys({...state.bucket}).map((key) => state.bucket[key]);
+  let bucketList = Object.keys({...state.bucket}).map((key) => {
+    if(state.bucket[key].created){
+      let date = new Date(state.bucket[key].created * 1000);
+      let dateString = `${date.getFullYear()} / ${date.getMonth()+1} / ${date.getDate()}`;
+      state.bucket[key].created = dateString;
+    }
+    return state.bucket[key];
+  });
   bucketList = bucketList.filter((bucket) => bucket.groupId === ownProps.groupId);
   return {
     ...ownProps,

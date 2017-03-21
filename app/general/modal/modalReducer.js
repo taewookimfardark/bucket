@@ -2,7 +2,8 @@ import * as modalActions from './modalActions';
 
 const initialState = {
   visible: false,
-  params: {}
+  params: {},
+  name: ''
 };
 
 const modalReducer = (state = initialState, action) => {
@@ -11,6 +12,7 @@ const modalReducer = (state = initialState, action) => {
       return {
         ...state,
         visible: true,
+        name: action.name,
         params: action.option
       };
 
@@ -18,6 +20,7 @@ const modalReducer = (state = initialState, action) => {
       return {
         ...state,
         visible: false,
+        name: '',
         params: null
       };
     default:
