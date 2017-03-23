@@ -40,7 +40,7 @@ const enhancer = middleware;
 const store = createStore(
   combineReducers({
     auth: authReducer,
-    user: userReducer,
+    users: userReducer,
     image: imageReducer,
     group: groupReducer,
     bucket: bucketReducer,

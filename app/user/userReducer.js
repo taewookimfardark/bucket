@@ -11,18 +11,11 @@ export const userActionCreators = {
 export const userReducer = (state = {}, action) => {
   switch(action.type) {
     case userActions.SET_USERS:
-      console.log(action);
-      let tmpUsers = {};
+      let newState = {...state};
       for(let user of action.users) {
-        tmpUsers[user.id] = user;
+        newState[user.id] = user;
       }
-      return {
-        ...state,
-        users: {
-          ...state.users,
-          ...tmpUsers
-        }
-      };
+      return newState;
     default:
       return state;
   }

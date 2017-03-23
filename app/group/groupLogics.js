@@ -25,9 +25,7 @@ const getGroupLogic = createLogic({
   type: groupActions.GET_GROUP,
   latest: true,
   process: async({getState, action, http, fetch}, dispatch, done) => {
-    console.log('call');
-    let res = await fetch.send('/relation-user-groups', 'get');
-    console.log('hoho', res);
+    let res = await fetch.send('/relation-user-groups', 'get', null, action.query);
     if(!res.data) done();
     let groups = [];
     for(let relationUserGroup of res.data) {
@@ -37,6 +35,27 @@ const getGroupLogic = createLogic({
   }
 });
 
+const getGroupMembersLogic = createLogic({
+  type: groupActions.GET_GROUP_MEMBERS,
+  latest: true,
+  process: async({getState, action, http, fetch}, dispatch, done) => {
+    let res = await fetch.send(`/members/${action.groupId}`, 'get');
+    let members = res.data;
+    dispatch(groupActionCreators.setGroupMembers(action.groupId, members));
+    done();
+  }
+});
+
+const addGroupMembersLogic = createLogic({
+  type: groupActions.ADD_GROUP_MEMBERS,
+  latest: true,
+  process: async({getState, action, http, fetch}, dispatch, done) => {
+    let res = await fetch.send('/relation-user-groups', 'post', action.member);
+    let member = res.data.user;
+    dispatch(groupActionCreators.setGroupMembers(action.member.groupId, [member]));
+  }
+});
+
 export default [
-  postGroupLogic, getGroupLogic
+  postGroupLogic, getGroupLogic, getGroupMembersLogic, addGroupMembersLogic
 ]

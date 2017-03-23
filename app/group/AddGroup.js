@@ -91,8 +91,8 @@ class AddGroup extends Component {
         <NavigationBar backButton={Actions.pop} completeButton={this.createGroup.bind(this)} title="Add Group"/>
         <View style={{flex: 2, paddingHorizontal: 20}}>
           <View style={{flex: 2, justifyContent: 'center', alignItems: 'center'}}>
-            <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)} style={{width: 140, height: 140, borderRadius: 10, backgroundColor: this.props.uploadedImage ? null : colors.colorBucket, opacity: 0.7, justifyContent: 'center', alignItems: 'center'}}>
-              {!this.props.uploadedImage ? <Icon name="md-add" color="white" size={35}/> : <Image style={styles.avatar} source={{uri: this.props.uploadedImage.servingUrl+'=s100'}}/>}
+            <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)} style={{width: 140, height: 140, borderRadius: 10, backgroundColor: colors.colorBucketOpacity, justifyContent: 'center', alignItems: 'center'}}>
+              {!this.props.uploadedImage ? <Text style={{color: 'white', fontSize: 30}}>+</Text> : <Image style={styles.avatar} source={{uri: this.props.uploadedImage.servingUrl}}/>}
             </TouchableOpacity>
           </View>
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -127,7 +127,8 @@ const styles = StyleSheet.create({
   avatar: {
     borderRadius: 10,
     width: 140,
-    height: 140
+    height: 140,
+    zIndex: 1
   },
   memberItem: {
     width: 320,

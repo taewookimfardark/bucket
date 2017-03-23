@@ -26,7 +26,7 @@ export default class Comment extends Component {
         <View style={{flex: 10, flexDirection: 'column'}}>
           <Text>{this.props.comment.message}</Text>
           <Text style={{fontSize: 10, color: colors.colorBackgroundOpacity}}>
-            {this.props.comment.created}
+            {this.props.comment.createdString}
           </Text>
         </View>
       </View>

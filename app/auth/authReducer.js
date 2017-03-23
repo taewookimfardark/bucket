@@ -1,5 +1,6 @@
 export const authActions = {
   LOGIN: 'LOGIN',
+  SIGN_UP: 'SIGN_UP',
   SET_AUTH_TOKEN: 'SET_AUTH_TOKEN',
   DELETE_AUTH_TOKEN: 'DELETE_AUTH_TOKEN',
   SET_MY_DATA: 'SET_MY_DATA'
@@ -7,6 +8,7 @@ export const authActions = {
 
 export const authActionCreators = {
   login: (email, password) => ({type: authActions.LOGIN, email, password}),
+  signUp: (user) => ({type: authActions.SIGN_UP, user}),
   setAuthToken: (token) => ({type: authActions.SET_AUTH_TOKEN, token}),
   deleteAuthToken: () => ({type: authActions.DELETE_AUTH_TOKEN}),
   setMyData: (myData) => ({type: authActions.SET_MY_DATA, myData})

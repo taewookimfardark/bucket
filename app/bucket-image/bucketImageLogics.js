@@ -6,12 +6,10 @@ const postBucketImageLogic = createLogic({
   latest: true,
   process: async({getState, action, http, fetch}, dispatch, done) => {
     try{
-      let imageResultList = [];
-      for(let img of action.imageArr) {
-        let res = await fetch.send('/bucket-images', 'post', img, {bucketId: action.bucketId}, {'Content-Type': 'multipart/form-data'});
-        imageResultList.push(res.data);
-      }
-      dispatch(bucketImageActionCreators.setBucketImage(imageResultList));
+      let res = await fetch.send('/bucket-images', 'post', action.imageBody, {bucketId: action.bucketId}, {'Content-Type': 'multipart/form-data'});
+      console.log(res);
+      console.log(res.data);
+      dispatch(bucketImageActionCreators.setBucketImage(res.data));
     } catch(err) {
       console.log('error', err);
     }

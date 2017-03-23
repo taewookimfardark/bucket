@@ -71,47 +71,42 @@ class Profile extends Component {
             </View>
             <View style={{flex: 1, alignItems: 'center'}}>
               <View style={{width: 100, height: 25, borderBottomWidth: 1, borderBottomColor: 'black'}}>
-                <TextInput style={{flex: 1, fontSize: 10, textAlign: 'center', textAlignVertical: 'bottom'}} value={this.props.myData.nickName}/>
+                <TextInput
+                  editable={false}
+                  style={{flex: 1, fontSize: 10, textAlign: 'center', textAlignVertical: 'bottom'}}
+                  value={this.props.myData.name}/>
               </View>
             </View>
           </View>
           <View style={{flex: 3, flexDirection: 'column', padding: 20}}>
               <View style={{flex: 1.5}}></View>
               <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                <Text style={{flex: 2, fontSize: 10, textAlign: 'center'}}>Name</Text>
-                <View style={{flex: 8, borderBottomWidth: 1, borderBottomColor: 'black'}}>
-                  <TextInput style={{flex: 1, fontSize: 10, textAlignVertical: 'bottom'}} placeholder="Name" value={this.props.myData.name}/>
-                </View>
-              </View>
-              <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
                 <Text style={{flex: 2, fontSize: 10, textAlign: 'center'}}>Gender</Text>
                 <View style={{flex: 8, borderBottomWidth: 1, borderBottomColor: 'black'}}>
-                  <TextInput style={{flex: 1, fontSize: 10, textAlignVertical: 'bottom'}} placeholder="Gender"/>
+                  <TextInput
+                    editable={false}
+                    style={{flex: 1, fontSize: 10, textAlignVertical: 'bottom'}}
+                    placeholder="Gender"
+                    value={this.props.myData.gender}/>
                 </View>
               </View>
               <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
                 <Text style={{flex: 2, fontSize: 10, textAlign: 'center'}}>Email</Text>
                 <View style={{flex: 8, borderBottomWidth: 1, borderBottomColor: 'black'}}>
-                  <TextInput style={{flex: 1, fontSize: 10, textAlignVertical: 'bottom'}} placeholder="Email" value={this.props.myData.email}/>
+                  <TextInput
+                    editable={false}
+                    style={{flex: 1, fontSize: 10, textAlignVertical: 'bottom'}}
+                    placeholder="Email"
+                    value={this.props.myData.email}/>
                 </View>
               </View>
               <View style={{flex: 1.5}}></View>
           </View>
-          <View style={{flex: 3, flexDirection: 'column'}}>
+          <View style={{flex: 3, alignItems: 'center', justifyContent: 'center'}}>
             <TouchableOpacity
-              style={{flex: 1, margin: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderRadius: 20}}
-              onPress={()=>Actions.editPassword()}>
-              <Text>Password</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{flex: 1, margin: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderRadius: 20}}
+              style={{height: 30, width: 300, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderRadius: 20}}
               onPress={()=>this.setState({confirmVisible: true, confirmText: 'Really Log out?'})}>
               <Text>Log out</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{flex: 1, margin: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderRadius: 20}}
-              onPress={()=>this.setState({confirmVisible: true, confirmText: 'Really Destroy?'})}>
-              <Text>Destroy</Text>
             </TouchableOpacity>
           </View>
         </View>

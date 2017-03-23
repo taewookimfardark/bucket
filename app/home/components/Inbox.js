@@ -5,8 +5,11 @@ import {
   ListView,
   Image,
   StyleSheet,
-  Modal
+  Modal,
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
+import {Actions} from 'react-native-router-flux';
 
 import colors from '../../general/colors';
 
@@ -19,6 +22,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#8E8E8E',
   }
 });
+
+const fullWidth = Dimensions.get('window').width;
 
 export default class Inbox extends Component {
 
@@ -33,7 +38,13 @@ export default class Inbox extends Component {
 
   render() {
     return(
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, paddingTop: 40}}>
+        <TouchableOpacity
+          style={{position: 'absolute', right: fullWidth * 0.05, top: 10, width: fullWidth * 0.9, borderRadius: 10, height: 30, backgroundColor: colors.colorBucket, justifyContent: 'center', alignItems: 'center'}}
+          onPress={()=>Actions.addMembers({group: this.props.group})}
+        >
+          <Text style={{color: 'white'}}>Add Members</Text>
+        </TouchableOpacity>
         <ListView
           dataSource={this.state.ds.cloneWithRows(this.props.requestedBuckets)}
           enableEmptySections={true}

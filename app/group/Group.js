@@ -37,13 +37,17 @@ class Group extends Component {
     return(
       <View style={{flex: 1}}>
         <Header headerName="My Groups"/>
-
         <ListView
           contentContainerStyle={styles.list}
           dataSource={this.state.ds.cloneWithRows(Object.keys(this.props.groups).map((id) => this.props.groups[id]))}
           enableEmptySections={true}
           renderRow={(rowData) =>
-                      <TouchableOpacity style={styles.item} onPress={(e) => Actions.tabbar({groupId: rowData.id})}>
+                      <TouchableOpacity
+                        style={styles.item}
+                        onPress={(e) => {
+                          this.props.getGroupMembers(rowData.id);
+                          Actions.tabbar({groupId: rowData.id});
+                        }}>
                         <Image style={{flex: 1, borderRadius: 10}} source={rowData.profileImage ? {uri: rowData.profileImage} : null}/>
                         <View style={{height: 25, position: 'absolute', borderBottomLeftRadius: 10, borderBottomRightRadius: 10, left: 0, right: 0, bottom: 0, backgroundColor: 'black', opacity: 0.7, justifyContent: 'center', alignItems: 'center'}}>
                           <Text style={{fontSize: 10, color: 'white', zIndex: 1}}>{rowData.name}</Text>
@@ -99,13 +103,15 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    groups: state.group
+    groups: state.group,
+    myData: state.myData
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getGroup : () => {dispatch(groupActionCreators.getGroup())}
+    getGroup: () => {dispatch(groupActionCreators.getGroup())},
+    getGroupMembers: (groupId) => {dispatch(groupActionCreators.getGroupMembers(groupId))}
   }
 };
 

@@ -9,6 +9,7 @@ import {
 import {Router, Scene, Modal} from 'react-native-router-flux';
 
 import Auth from './auth/Auth';
+import SignUp from './user/components/SignUp';
 import Group from './group/Group';
 import AddGroup from './group/AddGroup';
 import MainContainer from './home/MainContainer';
@@ -16,6 +17,7 @@ import Register from './home/components/Register';
 import Profile from './home/components/Profile';
 import CompleteBucket from './home/components/CompleteBucktet';
 import EditPassword from './home/components/EditPassword';
+import AddMembers from './home/components/AddMembers';
 
 const HomeIcon = ({ selected, title }) => {
   return (
@@ -37,7 +39,7 @@ const ProfileIcon = ({ selected, title }) => {
   return (
     <Image
       style={{height: 30, width: 30}}
-      source={require('./general/image/suggest_icon.png')}/>
+      source={require('./general/image/profile_icon.png')}/>
   );
 };
 
@@ -52,6 +54,12 @@ export default class App extends Component {
             component={Auth}
             title="Auth"
             initial={true}
+            hideNavBar={true}
+          />
+          <Scene
+            key="signUp"
+            component={SignUp}
+            title="signUp"
             hideNavBar={true}
           />
           <Scene
@@ -71,6 +79,12 @@ export default class App extends Component {
             component={CompleteBucket}
             hideNavBar={true}
             title="Complete Bucket"
+          />
+          <Scene
+            key="addMembers"
+            component={AddMembers}
+            hideNavBar={true}
+            title="Add Members"
           />
           <Scene
             key="editPassword"

@@ -5,7 +5,7 @@ export const bucketImageActions = {
 };
 
 export const bucketImageActionCreators = {
-  postBucketImage: (bucketId, imageArr) => ({type: bucketImageActions.POST_BUCKET_IMAGE, bucketId, imageArr}),
+  postBucketImage: (bucketId, imageBody) => ({type: bucketImageActions.POST_BUCKET_IMAGE, bucketId, imageBody}),
   setBucketImage: (imageArr) => ({type: bucketImageActions.SET_BUCKET_IMAGE, imageArr}),
   getBucketImage: (bucketId) => ({type: bucketImageActions.GET_BUCKET_IMAGE, bucketId})
 };

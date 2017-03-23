@@ -51,7 +51,7 @@ const TabBar = React.createClass({
         />
       </TouchableOpacity>
       <TouchableOpacity onPress={()=> this.props.goToPage(1)} style={{borderBottomWidth: 1, borderBottomColor: this.props.activeTab === 1 ? colors.colorBucket : 'transparent', justifyContent: 'center', alignItems: 'center'}}>
-        <Text style={{textAlignVertical: 'bottom', textAlign: 'center', fontSize: 20, color: colors.colorBucket}}>Would.U</Text>
+        <Text style={{textAlignVertical: 'bottom', textAlign: 'center', fontSize: 20, color: colors.colorBucket}}>Do.With</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={()=> this.props.goToPage(2)} style={{borderBottomWidth: 1, borderBottomColor: this.props.activeTab === 2 ? colors.colorBucket : 'transparent'}}>
         <Image

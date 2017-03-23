@@ -108,8 +108,10 @@ class Register extends Component {
         <View style={{flex: 1, flexDirection: 'column', padding: 10}}>
           <View style={{flex: 3, height: 200, borderRadius: 10, position: 'relative', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
             <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)} style={{flex: 1, borderRadius: 10}}>
-              {this.props.uploadedImage ? <Image style={{height: 200, flex: 1, borderRadius: 10}} source={{uri: this.props.uploadedImage.servingUrl+'=s100'}}/> :
-                                          <View style={{flex: 1, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.colorBucket}}><Text style={{color: 'white'}}>Add Bucket +</Text></View>}
+              {this.props.uploadedImage ? <Image style={{height: 200, flex: 1, borderRadius: 10, zIndex: 1}}
+                                                 resizeMode='stretch'
+                                                 source={{uri: this.props.uploadedImage.servingUrl}}/> :
+                                          <View style={{flex: 1, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.colorBucketOpacity}}><Text style={{color: 'white'}}>Add Bucket +</Text></View>}
             </TouchableOpacity>
           </View>
           <View style={{flex: 0.5, padding: 5}}>

@@ -45,14 +45,12 @@ class CompleteBucket extends Component {
       multiple: true,
       waitAnimationEnd: false
     }).then( (images) => {
-          let bodyList = [];
+      let body = new FormData();
           for(let i of images) {
-            let body = new FormData();
             let fileName = i.path.split('/')[i.path.split('/').length-1].split('.')[0];
-            body.append('file', {uri: `file://${i.path}`, type: 'multipart/form-data', name: fileName});
-            bodyList.push(body);
+            body.append(fileName, {uri: `file://${i.path}`, type: 'multipart/form-data', name: fileName});
           }
-      this.props.postBucketImage(this.props.bucket.id, bodyList);
+      this.props.postBucketImage(this.props.bucket.id, body);
     }).catch(e => alert(e));
   }
 
@@ -81,7 +79,7 @@ class CompleteBucket extends Component {
 
   completeBucket() {
     const completeBucketObj = {
-      completeDate: this.state.completeDate.getTime() / 1000,
+      completeDate: new Date(this.state.completeDate).getTime() / 1000,
       status: 'COMPLETED',
       completeMessage: this.state.completeMessage,
       completeMessageUserId: this.props.myData.id

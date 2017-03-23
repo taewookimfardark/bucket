@@ -65,7 +65,7 @@ class Main extends Component {
           renderTabBar={() => <TabBar/>}>
           <Album completedBuckets={this.props.buckets.filter((b) => b.status === 'COMPLETED')}/>
           <HomePage acceptedBuckets={this.props.buckets.filter((b) => b.status === 'ACCEPTED')}/>
-          <Inbox requestedBuckets={this.props.buckets.filter((b) => (b.status === 'REQUESTED'))}/>
+          <Inbox group={this.state.currentGroup} requestedBuckets={this.props.buckets.filter((b) => (b.status === 'REQUESTED'))}/>
         </ScrollableTabView>
       </View>
     )
@@ -77,7 +77,7 @@ const mapStateToProps = (state, ownProps) => {
     if(state.bucket[key].created){
       let date = new Date(state.bucket[key].created * 1000);
       let dateString = `${date.getFullYear()} / ${date.getMonth()+1} / ${date.getDate()}`;
-      state.bucket[key].created = dateString;
+      state.bucket[key].createdString = dateString;
     }
     return state.bucket[key];
   });

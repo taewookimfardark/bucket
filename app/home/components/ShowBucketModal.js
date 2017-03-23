@@ -29,8 +29,11 @@ class ShowBucketModal extends Component {
       ds: ds,
       message: ''
     };
-    this.props.getBucketImage(props.bucket.id);
-    this.props.getComment(props.bucket.id);
+  }
+
+  componentWillMount() {
+    this.props.getBucketImage(this.props.bucket.id);
+    this.props.getComment(this.props.bucket.id);
   }
 
   bucketImages() {
@@ -58,7 +61,7 @@ class ShowBucketModal extends Component {
           </View>
           <View style={{flex: 10, flexDirection: 'column', borderBottomWidth: 0.5, borderBottomColor: colors.colorBackgroundOpacity}}>
             <Text>{this.props.bucket.title}</Text>
-            <Text style={{fontSize: 10, color: colors.colorBackgroundOpacity}}>{this.props.bucket.created || '-'}</Text>
+            <Text style={{fontSize: 10, color: colors.colorBackgroundOpacity}}>{this.props.bucket.createdString || '-'}</Text>
           </View>
         </View>
         <View style={{flex: 5, flexDirection: 'column'}}>
@@ -102,7 +105,7 @@ const mapStateToProps = (state, ownProps) => {
   let commentList = Object.keys(comments).map(id => {
     let date = new Date(comments[id].created * 1000);
     let dateString = `${date.getFullYear()} / ${date.getMonth()+1} / ${date.getDate()}`;
-    comments[id].created = dateString;
+    comments[id].createdString = dateString;
     return comments[id];
   }).filter((comment) => comment.bucketId === ownProps.bucket.id);
   return{

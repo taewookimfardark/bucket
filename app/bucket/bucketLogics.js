@@ -56,7 +56,7 @@ const updateBucketLogic = createLogic({
         params[param] = bucket[param];
       }
       dispatch(bucketActionCreators.upsertBucket(bucket.id, params));
-      Actions.home();
+      Actions.pop();
     } catch(err){
       console.log(err);
     }
