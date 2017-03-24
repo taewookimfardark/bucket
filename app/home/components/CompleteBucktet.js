@@ -129,7 +129,7 @@ class CompleteBucket extends Component {
                     editable={false}
                     multiline={true}
                     value={this.props.bucket.description}
-                    style={{textAlignVertical: 'top', flex: 14, fontSize: 10}}/>
+                    style={{textAlignVertical: 'top', flex: 14, fontSize: 10, color: 'black'}}/>
                 </View>
               </View>
               <View style={{minHeight: 120, flexDirection: 'row', padding: 10}}>

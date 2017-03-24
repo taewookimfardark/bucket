@@ -55,12 +55,12 @@ class ShowBucketModal extends Component {
         <Swiper height={200} activeDotColor={colors.colorBackgroundOpacity}>
           {this.bucketImages()}
         </Swiper>
-        <View style={{flex: 1.5, flexDirection: 'row', padding: 10}}>
+        <View style={{flex: 1, flexDirection: 'row', padding: 10}}>
           <View style={{flex: 2, justifyContent: 'center', alignItems: 'center'}}>
             <Image style={{width: constants.profileS, height: constants.profileS, borderRadius: constants.profileS / 2}} source={{uri: this.props.bucket.user.profileImage}}/>
           </View>
           <View style={{flex: 10, flexDirection: 'column', borderBottomWidth: 0.5, borderBottomColor: colors.colorBackgroundOpacity}}>
-            <Text>{this.props.bucket.title}</Text>
+            <Text style={{fontSize: 12}}>{this.props.bucket.title}</Text>
             <Text style={{fontSize: 10, color: colors.colorBackgroundOpacity}}>{this.props.bucket.createdString || '-'}</Text>
           </View>
         </View>
@@ -71,9 +71,9 @@ class ShowBucketModal extends Component {
             renderRow={(comment) => <Comment width={this.props.width} comment={comment} key={comment.id}/>}
           />
         </View>
-        <View style={{flex: 1.5, padding: 10}}>
-          <View style={{flex: 1, borderWidth: 0.5, borderColor: colors.colorBackgroundOpacity, borderRadius: 5, padding: 5}}>
-            <TextInput style={{flex: 1}}
+        <View style={{height: 40, padding: 5}}>
+          <View style={{flex: 1, borderWidth: 0.5, borderColor: colors.colorBackgroundOpacity, borderRadius: 5, padding: 5, justifyContent: 'center', alignItems: 'center'}}>
+            <TextInput style={{width: this.props.width - 10, height: 40}}
                        value={this.state.message}
                        onChangeText={(text) => this.setState({message: text})}
                        placeholder="Reply message..."/>

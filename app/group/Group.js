@@ -20,6 +20,8 @@ import colors from '../general/colors';
 import {Actions} from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+const fullWidth = Dimensions.get('window').width;
+
 class Group extends Component {
 
   constructor(props) {
@@ -82,18 +84,18 @@ const styles = StyleSheet.create({
   },
   list: {
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
   item: {
     margin: 3,
-    width: 180,
-    height: 180,
+    width: fullWidth / 2 - 6,
+    height: fullWidth / 2 - 6,
     borderRadius: 10
   },
   addGroup: {
     margin: 3,
-    width: 180,
-    height: 180,
+    width: fullWidth / 2 - 6,
+    height: fullWidth / 2 - 6,
     borderRadius: 10,
     backgroundColor: colors.colorBucket,
     justifyContent: 'center',

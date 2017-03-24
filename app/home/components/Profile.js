@@ -5,17 +5,21 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  Modal
+  Modal,
+  Dimensions
 } from 'react-native';
 
 import {connect} from 'react-redux';
 
 import {Actions} from 'react-native-router-flux';
 import NavigationBar from '../../general/NavigationBar';
+import colors from '../../general/colors';
 
 import {authActionCreators} from '../../auth/authReducer';
 import {bucketActionCreators} from '../../bucket/bucketReducer';
 import {groupActionCreators} from '../../group/groupReducer';
+
+const fullWidth = Dimensions.get('window').width;
 
 class Profile extends Component {
 
@@ -62,7 +66,7 @@ class Profile extends Component {
           </View>
         </Modal>
         <NavigationBar title="myProfile" backButton={()=>Actions.home()} completeButton={()=>Actions.home()}/>
-        <View style={{flex: 1, padding: 15, flexDirection: 'column'}}>
+        <View style={{flex: 1, padding: 15, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
           <View style={{flex: 4, alignItems: 'center'}}>
             <View style={{flex: 3, alignItems: 'center', padding: 30}}>
               <Image style={{width: 100, height: 100, borderRadius: 50}}
@@ -70,37 +74,35 @@ class Profile extends Component {
               </Image>
             </View>
             <View style={{flex: 1, alignItems: 'center'}}>
-              <View style={{width: 100, height: 25, borderBottomWidth: 1, borderBottomColor: 'black'}}>
+              <View style={{width: 100, height: 30, borderBottomWidth: 1, borderBottomColor: colors.colorBackgroundOpacity, justifyContent: 'center', alignItems: 'center'}}>
                 <TextInput
                   editable={false}
-                  style={{flex: 1, fontSize: 10, textAlign: 'center', textAlignVertical: 'bottom'}}
+                  style={{width: 100, height: 30, fontSize: 10, color: 'black', textAlign: 'center', textAlignVertical: 'bottom'}}
                   value={this.props.myData.name}/>
               </View>
             </View>
           </View>
           <View style={{flex: 3, flexDirection: 'column', padding: 20}}>
-              <View style={{flex: 1.5}}></View>
-              <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                <Text style={{flex: 2, fontSize: 10, textAlign: 'center'}}>Gender</Text>
-                <View style={{flex: 8, borderBottomWidth: 1, borderBottomColor: 'black'}}>
-                  <TextInput
-                    editable={false}
-                    style={{flex: 1, fontSize: 10, textAlignVertical: 'bottom'}}
-                    placeholder="Gender"
-                    value={this.props.myData.gender}/>
-                </View>
+            <View style={{width: fullWidth * 0.7, height: 40, flexDirection: 'row', alignItems: 'center'}}>
+              <Text style={{flex: 2, fontSize: 10, textAlign: 'center'}}>Gender</Text>
+              <View style={{flex: 8, borderBottomWidth: 1, borderBottomColor: colors.colorBackgroundOpacity}}>
+                <TextInput
+                  editable={false}
+                  style={{flex: 1, fontSize: 10, textAlignVertical: 'bottom', color: 'black'}}
+                  placeholder="Gender"
+                  value={this.props.myData.gender}/>
               </View>
-              <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                <Text style={{flex: 2, fontSize: 10, textAlign: 'center'}}>Email</Text>
-                <View style={{flex: 8, borderBottomWidth: 1, borderBottomColor: 'black'}}>
-                  <TextInput
-                    editable={false}
-                    style={{flex: 1, fontSize: 10, textAlignVertical: 'bottom'}}
-                    placeholder="Email"
-                    value={this.props.myData.email}/>
-                </View>
+            </View>
+            <View style={{width: fullWidth * 0.7, height: 40, flexDirection: 'row', alignItems: 'center', flexDirection: 'row', alignItems: 'center'}}>
+              <Text style={{flex: 2, fontSize: 10, textAlign: 'center'}}>Email</Text>
+              <View style={{flex: 8, borderBottomWidth: 1, borderBottomColor: colors.colorBackgroundOpacity}}>
+                <TextInput
+                  editable={false}
+                  style={{flex: 1, fontSize: 10, textAlignVertical: 'bottom', color: 'black'}}
+                  placeholder="Email"
+                  value={this.props.myData.email}/>
               </View>
-              <View style={{flex: 1.5}}></View>
+            </View>
           </View>
           <View style={{flex: 3, alignItems: 'center', justifyContent: 'center'}}>
             <TouchableOpacity

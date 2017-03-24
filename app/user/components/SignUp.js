@@ -91,9 +91,9 @@ class SignUp extends Component {
     return (
       <View style={{flex: 1}}>
         <NavigationBar backButton={Actions.pop} completeButton={this.signUp.bind(this)} title="Sign up"/>
-        <View style={{flex: 1, paddingHorizontal: 30, paddingVertical: 80}}>
+        <View style={{flex: 1, paddingHorizontal: 30, paddingVertical: 60}}>
           <View style={{flex: 1}}>
-            <View style={{flex: 3, justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{flex: 3, justifyContent: 'center', alignItems: 'center', marginBottom: 10}}>
               <TouchableOpacity
                 onPress={this.selectPhotoTapped.bind(this)}
                 style={{width: 140, height: 140, backgroundColor: colors.colorBucketOpacity, borderRadius: 70, alignItems: 'center', justifyContent: 'center'}}>
@@ -105,39 +105,43 @@ class SignUp extends Component {
               </TouchableOpacity>
             </View>
             <View style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center'}}>
-              <View style={{height: 30, width: 120, borderBottomWidth: 0.5, borderBottomColor: colors.colorBackgroundOpacity}}>
+              <View style={{height: 30, width: 120, borderBottomWidth: 0.5, borderBottomColor: colors.colorBackgroundOpacity, justifyContent: 'center', alignItems: 'center'}}>
                 <TextInput
-                  style={{flex: 1, fontSize: 15, textAlign: 'center'}}
+                  style={{height: 40, width: 120, fontSize: 15, textAlign: 'center'}}
                   onChangeText={(text)=> this.setState({name: text})}
+                  underlineColorAndroid='transparent'
                   placeholder="Name"/>
               </View>
             </View>
           </View>
           <View style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
             <View style={{width: 300, height: 30, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', margin: 5}}>
-              <Text style={{flex: 3, textAlign: 'right', marginRight: 5, textAlignVertical: 'bottom', alignItems: 'center', justifyContent: 'center'}}>Id</Text>
-              <View style={{flex: 7, borderBottomWidth: 0.5, borderBottomColor: colors.colorBucketOpacity}}>
+              <Text style={{flex: 3, textAlign: 'right', marginRight: 5, textAlignVertical: 'bottom', alignItems: 'center', justifyContent: 'center'}}>Email</Text>
+              <View style={{flex: 7, borderBottomWidth: 0.5, borderBottomColor: colors.colorBackgroundOpacity, alignItems: 'center', justifyContent: 'center'}}>
                 <TextInput
                   onChangeText={(text)=> this.setState({email: text})}
-                  style={{flex: 1, fontSize: 15, textAlignVertical: 'bottom'}}/>
+                  underlineColorAndroid='transparent'
+                  style={{width: 210, height: 40, fontSize: 15, textAlignVertical: 'bottom'}}/>
               </View>
             </View>
             <View style={{width: 300, height: 30, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', margin: 5}}>
               <Text style={{flex: 3, textAlign: 'right', marginRight: 5, textAlignVertical: 'bottom', alignItems: 'center', justifyContent: 'center'}}>Password</Text>
-              <View style={{flex: 7, borderBottomWidth: 0.5, borderBottomColor: colors.colorBucketOpacity}}>
+              <View style={{flex: 7, borderBottomWidth: 0.5, borderBottomColor: colors.colorBackgroundOpacity, alignItems: 'center', justifyContent: 'center'}}>
                 <TextInput
                   onChangeText={(text)=> this.setState({password: text})}
                   secureTextEntry={true}
-                  style={{flex: 1, fontSize: 15}}/>
+                  underlineColorAndroid='transparent'
+                  style={{width: 210, height: 40, fontSize: 15, textAlignVertical: 'bottom'}}/>
               </View>
             </View>
             <View style={{width: 300, height: 30, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', margin: 5}}>
               <Text style={{flex: 3, textAlign: 'right', marginRight: 5, textAlignVertical: 'bottom', alignItems: 'center', justifyContent: 'center'}}>PW Confirm</Text>
-              <View style={{flex: 7, borderBottomWidth: 0.5, borderBottomColor: colors.colorBucketOpacity}}>
+              <View style={{flex: 7, borderBottomWidth: 0.5, borderBottomColor: colors.colorBackgroundOpacity, alignItems: 'center', justifyContent: 'center'}}>
                 <TextInput
                   onChangeText={(text)=> this.setState({passwordConfirm: text})}
                   secureTextEntry={true}
-                  style={{flex: 1, fontSize: 15}}/>
+                  underlineColorAndroid='transparent'
+                  style={{width: 210, height: 40, fontSize: 15, textAlignVertical: 'bottom'}}/>
               </View>
             </View>
             <View style={{width: 300, height: 30, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', margin: 5}}>

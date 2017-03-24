@@ -26,9 +26,6 @@ export default class ManageBucketModal extends Component {
               <View style={{flex: 9, flexDirection: 'column', justifyContent: 'center'}}>
                 <Text>{this.props.bucket && this.props.bucket.title || '-'}</Text>
               </View>
-              <TouchableOpacity style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                <Icon name="md-create" size={24}/>
-              </TouchableOpacity>
             </View>
           </View>
           <View style={{flex: 3, flexDirection: 'row', padding: 10}}>
