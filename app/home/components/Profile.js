@@ -12,7 +12,7 @@ import {
 import {connect} from 'react-redux';
 
 import {Actions} from 'react-native-router-flux';
-import NavigationBar from '../../general/NavigationBar';
+import NavigationBar from '../../general/NavigationBar.ios';
 import colors from '../../general/colors';
 
 import {authActionCreators} from '../../auth/authReducer';

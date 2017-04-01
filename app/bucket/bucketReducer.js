@@ -11,7 +11,7 @@ export const bucketActionCreators = {
   getBucket: (groupId) => ({type: bucketActions.GET_BUCKET, groupId}),
   setBucket: (bucketList) => ({type: bucketActions.SET_BUCKET, bucketList}),
   postBucket: (bucket) => ({type: bucketActions.POST_BUCKET, bucket}),
-  updateBucket: (bucketId, params) => ({type: bucketActions.UPDATE_BUCKET, bucketId, params}),
+  updateBucket: (bucketId, params, updateType) => ({type: bucketActions.UPDATE_BUCKET, bucketId, params, updateType}),
   upsertBucket: (bucketId, params) => ({type: bucketActions.UPSERT_BUCKET, bucketId, params}),
   resetBucket: ()=> ({type: bucketActions.RESET_BUCKET})
 };

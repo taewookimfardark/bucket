@@ -45,12 +45,12 @@ export default class ManageBucketModal extends Component {
             </TouchableHighlight> :
             <View style={{flex: 1, flexDirection: 'row'}}>
               <TouchableOpacity
-                onPress={()=> {this.props.closeModal({}); this.props.updateBucket(this.props.bucket.id, {status: 'REJECTED'});}}
+                onPress={()=> {this.props.closeModal({}); this.props.updateBucket(this.props.bucket.id, {status: 'REJECTED'}, 'REJECT');}}
                 style={{flex: 1, marginHorizontal: 3, borderRadius: 10, borderWidth: .5, borderColor: 'black', justifyContent: 'center', alignItems: 'center'}}>
                 <Text>Reject</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={()=> {this.props.closeModal({}); this.props.updateBucket(this.props.bucket.id, {status: 'ACCEPTED'});}}
+                onPress={()=> {this.props.closeModal({}); this.props.updateBucket(this.props.bucket.id, {status: 'ACCEPTED'}, 'ACCEPT');}}
                 style={{flex: 1, marginHorizontal: 3, borderRadius: 10, borderWidth: .5, borderColor: 'black', justifyContent: 'center', alignItems: 'center'}}>
                 <Text>Accept</Text>
               </TouchableOpacity>

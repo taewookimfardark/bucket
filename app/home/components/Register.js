@@ -4,14 +4,15 @@ import {
   Text,
   Image,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
 
 import colors from '../../general/colors';
 
 import DatePicker from 'react-native-datepicker';
 import ImagePicker from 'react-native-image-picker';
-import NavigationBar from '../../general/NavigationBar';
+import NavigationBar from '../../general/NavigationBar.ios';
 
 import {Actions} from 'react-native-router-flux';
 import {connect} from 'react-redux';
@@ -19,6 +20,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import {imageActionCreators} from '../../image/imageReducer';
 import {bucketActionCreators} from '../../bucket/bucketReducer';
+
+const fullWidth = Dimensions.get('window').width;
 
 class Register extends Component {
 
@@ -105,7 +108,7 @@ class Register extends Component {
                          Actions.home();
                        }}
                        completeButton={this.createBucket.bind(this)}/>
-        <View style={{flex: 1, flexDirection: 'column', padding: 10}}>
+        <View style={{flex: 1, flexDirection: 'column', padding: 20}}>
           <View style={{flex: 3, height: 200, borderRadius: 10, position: 'relative', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
             <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)} style={{flex: 1, borderRadius: 10}}>
               {this.props.uploadedImage ? <Image style={{height: 200, flex: 1, borderRadius: 10, zIndex: 1}}
@@ -114,10 +117,10 @@ class Register extends Component {
                                           <View style={{flex: 1, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.colorBucketOpacity}}><Text style={{color: 'white'}}>Add Bucket +</Text></View>}
             </TouchableOpacity>
           </View>
-          <View style={{flex: 0.5, padding: 5}}>
-            <View style={{flex: 1, borderBottomWidth: 1, borderBottomColor: this.state.titleInputFocus ? 'purple' : 'black'}}>
+          <View style={{flex: 0.5,  padding: 5}}>
+            <View style={{height: 30, width: fullWidth - 50, borderBottomWidth: 1, borderBottomColor: this.state.titleInputFocus ? 'purple' : 'black'}}>
               <TextInput
-                style={{flex: 1, textAlignVertical: 'bottom', fontSize: 10}}
+                style={{height: 35, width: fullWidth - 50, textAlignVertical: 'bottom', fontSize: 10}}
                 onFocus={()=>this.setState({titleInputFocus: true})}
                 onBlur={()=>this.setState({titleInputFocus: false})}
                 underlineColorAndroid='transparent'

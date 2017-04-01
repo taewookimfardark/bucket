@@ -44,7 +44,7 @@ class BucketModal extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateBucket: (bucketId, params) => dispatch(bucketActionCreators.updateBucket(bucketId, params))
+    updateBucket: (bucketId, params, updateType) => dispatch(bucketActionCreators.updateBucket(bucketId, params, updateType))
   }
 };
 

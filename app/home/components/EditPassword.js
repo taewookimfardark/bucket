@@ -7,7 +7,7 @@ import {
 
 import {Actions} from 'react-native-router-flux';
 
-import NavigationBar from '../../general/NavigationBar';
+import NavigationBar from '../../general/NavigationBar.ios';
 
 export default class EditPassword extends Component {
   render() {

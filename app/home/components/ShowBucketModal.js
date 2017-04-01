@@ -55,11 +55,11 @@ class ShowBucketModal extends Component {
         <Swiper height={200} activeDotColor={colors.colorBackgroundOpacity}>
           {this.bucketImages()}
         </Swiper>
-        <View style={{flex: 1, flexDirection: 'row', padding: 10}}>
+        <View style={{flex: 1.5, flexDirection: 'row', padding: 10}}>
           <View style={{flex: 2, justifyContent: 'center', alignItems: 'center'}}>
             <Image style={{width: constants.profileS, height: constants.profileS, borderRadius: constants.profileS / 2}} source={{uri: this.props.bucket.user.profileImage}}/>
           </View>
-          <View style={{flex: 10, flexDirection: 'column', borderBottomWidth: 0.5, borderBottomColor: colors.colorBackgroundOpacity}}>
+          <View style={{flex: 10, flexDirection: 'column', borderBottomWidth: 0.5, borderBottomColor: colors.colorBackgroundOpacity, justifyContent: 'center'}}>
             <Text style={{fontSize: 12}}>{this.props.bucket.title}</Text>
             <Text style={{fontSize: 10, color: colors.colorBackgroundOpacity}}>{this.props.bucket.createdString || '-'}</Text>
           </View>

@@ -1,4 +1,4 @@
-package com.bucket;
+package com.dowithh;
 
 import com.facebook.react.ReactActivity;
 

@@ -17,7 +17,7 @@ import constants from '../../general/constants';
 import colors from '../../general/colors';
 
 import ImagePicker from 'react-native-image-picker';
-import NavigationBar from '../../general/NavigationBar';
+import NavigationBar from '../../general/NavigationBar.ios';
 
 class SignUp extends Component {
 
@@ -62,6 +62,12 @@ class SignUp extends Component {
   }
 
   signUp() {
+
+    if(!this.state.name || !this.state.email) {
+      Alert.alert('You should input all informations!');
+      return;
+    }
+
     if(this.state.password !== this.state.passwordConfirm) {
       Alert.alert('Check password!');
       this.setState({
@@ -70,13 +76,14 @@ class SignUp extends Component {
       });
       return;
     }
+
     const userObj = {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
       gender: this.state.selectedGender,
-      profileImage: this.props.uploadedImage.servingUrl,
-      profileImageId: this.props.uploadedImage.id
+      profileImage: this.props.uploadedImage ? this.props.uploadedImage.servingUrl : null,
+      profileImageId: this.props.uploadedImage ? this.props.uploadedImage.id : null
     };
     this.props.signUp(userObj);
   }

@@ -7,6 +7,7 @@ const imageLogic = createLogic({
   process: async({getState, action, http, fetch}, dispatch, done) => {
     try{
       let res = await fetch.send('/images', 'post', action.body, null, {'Content-Type': 'multipart/form-data'});
+      console.log(res);
       dispatch(imageActionCreators.setImage(res.data));
     } catch(err) {
       console.log('error', err);

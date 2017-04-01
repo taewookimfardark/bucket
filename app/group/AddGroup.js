@@ -13,7 +13,7 @@ import {connect} from 'react-redux';
 
 import colors from '../general/colors';
 
-import NavigationBar from '../general/NavigationBar';
+import NavigationBar from '../general/NavigationBar.ios';
 import ImagePicker from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -96,12 +96,16 @@ class AddGroup extends Component {
             </TouchableOpacity>
           </View>
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <View style={{borderBottomWidth: 1, width: 100, height: 30, borderBottomColor: 'grey'}}>
-              <TextInput style={{flex: 1, fontSize: 15, textAlign: 'center'}} placeholder='Name' onChangeText={(text) => this.setState({groupName: text})}/>
+            <View style={{borderBottomWidth: 1, width: 100, height: 35, borderBottomColor: 'grey'}}>
+              <TextInput
+                style={{width: 100, height: 40, fontSize: 15, textAlign: 'center'}}
+                placeholder='Name'
+                underlineColorAndroid='transparent'
+                onChangeText={(text) => this.setState({groupName: text})}/>
             </View>
           </View>
         </View>
-        <View style={{flex: 3, alignItems: 'center', paddingHorizontal: 20}}>
+        <View style={{flex: 2, alignItems: 'center', paddingHorizontal: 20}}>
           <View style={styles.memberItem}>
             <Text style={styles.memberName}>{this.props.myData.email}</Text>
           </View>
@@ -158,12 +162,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
-  let members = [];
-  if(state.user.users) members = state.user.users.filter((user) => user.id !== state.auth.myData.id);
   return {
     myData: state.auth.myData,
-    users: members,
     uploadedImage: state.image.uploadedImage
   }
 };

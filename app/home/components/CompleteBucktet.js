@@ -13,7 +13,7 @@ import {
 import {connect} from 'react-redux';
 
 import DatePicker from 'react-native-datepicker';
-import NavigationBar from '../../general/NavigationBar';
+import NavigationBar from '../../general/NavigationBar.ios';
 import Swiper from 'react-native-swiper';
 import colors from '../../general/colors';
 
@@ -84,7 +84,7 @@ class CompleteBucket extends Component {
       completeMessage: this.state.completeMessage,
       completeMessageUserId: this.props.myData.id
     };
-    this.props.completeBucket(this.props.bucket.id, completeBucketObj);
+    this.props.completeBucket(this.props.bucket.id, completeBucketObj, 'COMPLETE');
   }
 
   render() {
@@ -168,7 +168,7 @@ const mapDispatchToProps = dispatch => {
   return {
     postBucketImage: (bucketId, imageArr) => dispatch(bucketImageActionCreators.postBucketImage(bucketId, imageArr)),
     getBucketImage: (bucketId) => dispatch(bucketImageActionCreators.getBucketImage(bucketId)),
-    completeBucket: (bucketId, params) => dispatch(bucketActionCreators.updateBucket(bucketId, params))
+    completeBucket: (bucketId, params, updateType) => dispatch(bucketActionCreators.updateBucket(bucketId, params, updateType))
   }
 };
 

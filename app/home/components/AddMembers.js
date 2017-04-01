@@ -10,7 +10,7 @@ import {
 import {connect} from 'react-redux';
 import {Actions} from 'react-native-router-flux';
 
-import NavigationBar from '../../general/NavigationBar';
+import NavigationBar from '../../general/NavigationBar.ios';
 
 import {userActionCreators} from '../../user/userReducer';
 import {groupActionCreators} from '../../group/groupReducer';

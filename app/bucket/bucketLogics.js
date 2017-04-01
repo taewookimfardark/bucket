@@ -56,7 +56,13 @@ const updateBucketLogic = createLogic({
         params[param] = bucket[param];
       }
       dispatch(bucketActionCreators.upsertBucket(bucket.id, params));
-      Actions.pop();
+      if(action.updateType === 'ACCEPT') {
+        console.log('call');
+        Actions.home();
+      } else if(action.updateType === 'COMPLETE') {
+        Actions.pop();
+      }
+
     } catch(err){
       console.log(err);
     }
